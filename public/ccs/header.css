@@ -1,0 +1,95 @@
+
+header {
+    
+    padding: 16px 0;
+
+}
+
+header .wrap {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 32px;
+}
+
+.logo {
+    margin: 0;
+    white-space: nowrap;
+    width: 40%;
+}
+
+/* ESTILOS PARA CONTROLAR EL BUSCADOR */
+
+header .input-group {
+    position: relative;
+    width: 40%;
+}
+
+header .bi-search {
+    position: absolute;
+    color: var(--primario);
+    top: 16px;
+    right: 16px;
+
+}
+
+/* ESTILOS PARA CONTROLAR EL CARRITO */ 
+    header .bi-bag-cart-fill {
+    color: var(--blanco);
+   
+}
+
+#carrito {
+    position: relative;
+    white-space: nowrap;
+}
+
+#carrito span {
+    position:absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    width: 24px;
+    height: 24px;
+    color: var(--primario);
+    background-color: var(--secundario);
+    border: 0.5px solid var(--blanco);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ESTILOS PARA MENU PRINCIPAL  */
+
+.menu-header {
+    /* background-color: var(--primario); */
+    border: 2px solid var(--blanco);
+    border-radius: 8px;
+    width: 80%;
+    margin: auto;
+    
+}
+
+.menu-header .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    gap: 16px;
+    
+}
+
+.menu-header ul {
+    padding: 0;
+}
+
+.menu-header li {
+    display: inline-block;
+    margin-right: 16px;
+}
+
+

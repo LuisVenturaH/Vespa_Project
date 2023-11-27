@@ -1,0 +1,76 @@
+.btn, button {
+    color: var(--blanco);
+    background-color: var(--primario);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    transform: all 0.3;
+}
+
+.jumbotron button { /*Estilos para cambiar display de botones a BLOCK y que ocupen todo el contenedor*/
+    display: block;
+    font-size: 1rem;
+  
+}
+
+button.btn-secundario { /*Controla los estilos de los botones secundarios*/
+    background-color: var(--secundario);
+    border: 1px solid var(--secundario);
+}
+
+
+/*Estilos para botones de navegación*/
+
+ul, li, a {     /*Quitar estilos a las listas*/
+    list-style: none;
+    text-decoration: none;
+    list-style: none;
+    color: var(--blanco);
+  }
+  
+
+  /*ESTILOS PARA LOS INOCOS*/
+
+  .contenedor-iconos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 1080px;
+    margin: auto;
+    gap: 32px;
+    text-align: center;
+    margin-bottom: 32px ;  
+}
+
+.iconos {
+   display: flex;
+   align-items: center;
+   border: 1px solid var(--primario);
+   border-radius: 8px;
+   padding: 0 32px;
+   /* background-color: var(--blanco); */
+   width: 100%;
+}
+
+.icono {
+   color: var(--primario); 
+   font-size: 4.5rem;
+   text-shadow: -5px 3px 8px var(--negro);
+   align-items: center;
+   
+}
+
+.texto-icono {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   text-align: center;
+   font-weight: 600;
+
+}
+
+

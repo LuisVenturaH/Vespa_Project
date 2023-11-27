@@ -1,0 +1,194 @@
+/* ESTILOS GENERALES */
+:root {
+    --primario: #cf555d;
+    --secundario: #6DCCB0;   
+    --verde_italia: #006847;
+    --rojo_italia: #CE2B37;
+    --negro: #111111;
+    --blanco: #FFFFFF;
+    --gris: #E5E5E5;
+    --resalto: #fb5000;
+  }
+
+* {
+    box-sizing: border-box; /*Sirve para resetear todos los bordes de la web y que tengan la misma especificación*/
+}
+
+.m-color {
+    color: var(--secundario);
+}
+
+body {
+    font-family: "inter", sans-serif;
+    color: var(--negro);
+    background-color: var(--blanco);
+    margin: 0;
+
+}
+
+.wrap {
+    max-width: 80%;
+    padding: 0 16px;
+    margin: 0 auto;
+}
+
+main {
+    background-color: var(--blanco);
+    margin: 0 auto;
+
+}
+
+.jumbotron {
+background-image: url(/img/carrusel_3.jpg);
+background-size: cover;
+background-position: 50% 75%;
+padding: 112px 0 80px 0;
+color: var(--blanco);
+}
+
+.jumbotron-carrito {
+    background-image: url(/img/carrusel_1.jpg);
+    height: 280px;
+    background-size: cover;
+    background-position: 50% 75%;
+    padding: 32px 0 32px 0;
+    color: var(--blanco);
+    }
+    
+
+main #h1-index {
+    color: var(--blanco);
+    font-weight: 900;
+    font-size: 4.5rem;
+    text-shadow: 2px 2px 4px var(--negro);
+}
+
+/* Hasta aquí todo bien*/
+
+
+main .h4 {
+    font-style: italic;
+    margin: 0 16px 32px 16px;
+    color: var(--negro);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+    
+h1, h2, h3, h4, h5, H6 { /* AGREGO ESTILO A TODOS LOS H DE LA WEB */
+    color: var(--negro);
+    margin: 3rem 0 1.38rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 3.052rem;
+}
+    
+h2 {font-size: 2.441rem;}
+    
+h3 {font-size: 1.953rem;}
+    
+h4 {font-size: 1.563rem;}
+    
+h5 {font-size: 1.25rem;}
+
+h6 {font-size: 1rem;}
+    
+small, .text_small {font-size: 0.8rem;}
+
+
+/* CLASES INTELIGENTES PARA REUTILIZAR LOS H Y NO UTILIZAR LA PROPIA ETIQUETA H */
+
+.h1 {
+    margin-top: 0;
+    font-size: 3.052rem;
+}
+  
+.h2 {font-size: 2.441rem;}
+  
+.h3 {font-size: 1.953rem;}
+  
+.h4 {font-size: 1.563rem;}
+  
+.h5 {font-size: 1.25rem;}
+  
+.h6 {font-size: 1rem;}
+
+/* Cambia el color del marcador de posición en campos de entrada (placeholder) */
+
+input::placeholder {
+    color: var(--primario); 
+}
+
+.bold {
+    font-weight: 800;
+}
+
+/*ESTILOS PARA SECION TESTIMONIO*/
+
+.contenedor-testimonio {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--blanco);
+    padding: 32px 80px;
+    /* margin: 32px auto; */
+    width: 100%;
+}
+
+.testimonio-global {
+    border: 1px solid var(--secundario);
+    border-radius: 8px;
+    padding: 16px;
+    background-color: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+    max-width: 560px;
+    min-width: 360px;
+   
+}
+
+.testimonio {
+    display: flex;
+    flex-direction: column;
+    padding: 16px auto;
+    color: -var(--blanco);
+    align-items: center;
+}
+.testimonio h3{
+    color: var(--blanco);
+    font-size: 4rem;
+    font-weight: 800;
+    text-shadow: #111111;
+}
+
+.testimonio .button  {
+    border: 1px solid var(--negro);
+    background-color: var(--secundario);
+
+}
+
+.cita-testimonio {
+    padding: 32px;
+    border: none;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.testimonio-imagen {
+    background-image: url(/img/vespa_opiniones.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
+    padding: 112px 0 80px 0;
+}
+
+  
+  

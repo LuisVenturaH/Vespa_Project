@@ -1,0 +1,86 @@
+
+.card-all {   /*Controla estilos de todas las tarjetas*/
+    display: flex;
+    margin: 16px auto;
+    gap: 24px;
+}
+
+.card-all .card {
+    width: 100%;
+}
+
+.card { /*Controla los estilos de las tarjetas indiviaduales*/
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--blanco);
+    padding-bottom: 16px ;
+    box-shadow: -5px 15px 10px #888888;
+}
+
+.card img { /*Controla los estilos de la imagen de las tarjetas*/
+    max-width: 100%;
+}
+
+.card image {
+    background-color: var(--gris);
+    /* background-position: center center; */
+    background-size: cover;
+}
+
+.card .card-contenido { /*Controla los estilos de descripción y precio*/
+   display: flex;
+   flex-direction: column;
+   padding: 24px;
+   gap: 24px;
+   color: var(--negro);
+  
+}
+
+.card .card-contenido .precio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ 
+}
+
+.card .card-contenido .precio .h3 {
+    padding: 0;
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+
+.valoraciones {
+    display: inline-flex;
+    font-size: 1rem;
+}
+
+.valoraciones .bi {
+   margin-right: 2px;
+}
+
+.valoraciones-positivas {
+    display: inline-flex;
+    color: var(--secundario);
+}
+
+.valoraciones-negativas {
+    display: inline-flex;
+    color: var(--gris);
+}
+
+.card p {
+    font-size: 0.75rem;
+    padding: o;
+    margin: 0;
+}
+
+.card-botones {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+
+

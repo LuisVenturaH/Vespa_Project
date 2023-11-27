@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vespa Project</title>
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <!--Bootstraps Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"/>
+    <!--Mis hojas de estilo-->
+    <link rel="stylesheet" href="/ccs/style.css"/>
+    <link rel="stylesheet" href="/ccs/header.css">
+    <link rel="stylesheet" href="/ccs/button.css">
+    <link rel="stylesheet" href="/ccs/cart.css">
+    <link rel="stylesheet" href="/ccs/footer.css">
+    <link rel="stylesheet" href="/ccs/form.css">
+    <style>
+header .wrap {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 32px;
+}
+header .buscador{
+    width: 20%;
+}
+header .input-group{
+    width: 480%;
+}
+    </style>
+
+  </head>
+<body>
+    <div class="jumbotron-carrito">   <!--Abre contenedor imagen fondo cabecera-->
+        
+        <header>
+            <div class="wrap">
+              
+                <!-- Encabezado logo -->
+                <a href="http://localhost:8000/index.html">        
+                 <img src="/img/logo_vespa.png" class="logo" alt="Logo Oficial Vespa"/></a>
+               
+                <!-- Encabezado buscador -->
+                <div class="input-group">
+                    <input type="search" id="buscador" placeholder="!El que busca encuentra!"/>
+                    <i class="bi bi-search"></i>
+                </div>
+      
+                <!-- Botón carrito -->
+                  <button type="button"><a href="http://localhost:8000/html/carrito.html" class="btn" id="carrito">
+                    <i class="bi bi-cart-fill"></i>Carrito<span>3</span></a></button>    
+              </div>
+          </header>
+        <div  class="menu-header">
+          <nav class="wrap"><!--Inicio contenedor navegador cabecera-->
+                <div> <!--Contenedor navegador 1-->
+                  <ul>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                  </ul>
+                </div>
+        
+                <div> <!--Contenedor navegador 2-->
+                  <ul>
+                    <li><a href="#">Mis pedidos</a></li>
+                    <li><a href="#">Logout</a></li>
+                  </ul>
+          </nav>
+        </div>
+    </div>  <!--Cierra contenedor imagen fondo cabecera-->
+
+
+<main class="wrap">
+    <h2 class="bold">Mi Carrito</h2>
+    <div class="cart-contenedor-principal"> <!--Abre contenedor principal Mi carrito-->
+        <div class="cart-productos">  <!--Abre contenedor productos añadidos-->
+
+            <!--Abre contenedor UNO-->
+            <div  class="cart-contenedor-producto"> 
+                <div> <!--Imagen producto UNO-->
+                    <img src="/img/vespa_electrica.jpg" width="70%" alt="Vespa Electrica" />
+                </div>
+                <div class="cart-contenedor-descripcion">
+                    <p><span class="bold">Vespa Electrica.</span> Potencia 125cv, con independencia de hasta 350 kilometros</p>
+                    <div class="h4">999,99<i class="bi bi-currency-euro m-color"></i></div>
+                </div>
+                <div class="cart-contenedor-interno">  
+                    <i class="bi bi-dash-square m-color"></i>
+                    <p>1</p>
+                    <i class="bi bi-plus-square m-color"></i>
+                    <i class="bi bi-trash3-fill"></i>    
+                </div>
+            </div> <!--Cierra contenedor UNO-->
+
+            <div  class="cart-contenedor-producto"> <!--Abre contenedor DOS-->
+                <div> <!--Imagen producto UNO-->
+                    <img src="/img/vespa_primavera.jpg" width="70%" alt="Vespa Primavera" />
+                </div>
+                <div class="cart-contenedor-descripcion">
+                    <p><span class="bold">Vespa Primavera.</span> Potencia 125cv, estilo joven y vanguardista</p>
+                    <div class="h4">999,99<i class="bi bi-currency-euro m-color"></i></div>
+                </div>
+                <div class="cart-contenedor-interno">  
+                    <i class="bi bi-dash-square m-color"></i>
+                    <p>1</p>
+                    <i class="bi bi-plus-square m-color"></i>
+                    <i class="bi bi-trash3-fill"></i>    
+                </div>
+            </div> <!--Cierra contenedor DOs-->
+
+         </div>  <!--Cierra contenedor productos añadidos-->
+
+        <div class="cart-resumen-producto"> <!--Abre contenedor Resumen Pedido-->
+            <div>
+                <h4>Resumen de Pedido</h4>
+                <p>Continúa con el proceso de pago</p>
+            </div>
+            <div>
+                <div class="h4">999,99<i class="bi bi-currency-euro m-color"></i></div>
+            </div>
+              
+            <div class="card-botones"> <!--Contenedor botones del producto 1-->
+                <button type="button" class="btn-secundario"><a href="#">Proceder al pago</a></button>
+            </div>
+
+        </div> <!--Cierra contenedor Resumen Pedido-->
+
+    </div> <!--Cierra contenedor principal Mi carrito-->
+</main>
+<footer class="jumbotron-footer">
+    <div class="wrap-footer">  <!--Apertura contenedor general footer-->
+    <div class="contenedor-footer-1"> <!--Inicio contenedor uno pie de página-->
+        <div>
+            <img src="/img/logo_vespa_blanco.png" class="image" alt="Logo Vespa Blanco" />
+        </div>
+
+        <div>
+            <nav class="menu-footer-1"><!--Inicio contenedor navegador pie de página-->
+                <div> <!--Contenedor navegador 1-->
+                <ul>
+                    <li><a href="#">Centro de ayuda</a></li>
+                    <li><a href="#">Servicio al consumidor</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+                </div>
+        
+                <div> <!--Contenedor navegador 2-->
+                <ul>
+                    <li><a href="#">Política de privacidad</a></li>
+                    <li><a href="#">Condiciones de compra</a></li>
+                    <li><a href="#">Aviso y política de cookies</a></li>
+                    <li><a href="#">Opiniones de cliente</a></li>
+                </ul>
+                </div>
+            </nav> <!--Cierre contededor navegador pie de página-->
+        </div>
+    </div> <!--Cierre contenedor uno pie de página-->
+
+    <div class="contenedor-footer-2"> <!--Inicio contenedor dos pie de página-->
+        
+        <div> <!--ontenedor formulario newslatter pie de página-->
+            <div>
+                <h4>Únete a nuestras newletter y no te pierdas las novedades</h4>
+            </div>
+
+            <form>
+                <input type="text" class="suscripcion" placeholder="Introduce tu email">
+                <input type="submit" class="btn su" value="Suscribirme">
+            </form>
+
+            <div class="politica">
+            <input type="checkbox" id="politicas" name="politicas" required>
+            <label>Acepto las <a href="#">políticas de privacidad</a></label>
+          </div>
+
+        </div> 
+
+        <div> <!--Contenedor redes sociales-->
+            <div>
+                <p class="h4">Síguemos en redes sociales</p>
+            </div>
+            <div class="iconos-footer">
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-youtube"></i></a>
+                <a href="#"><i class="bi bi-twitch"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+            </div>
+
+        </div>
+    </div> <!--Cierre contenedor uno pie de página-->
+</div> <!--Cierre contenedor general footer-->
+</footer>
+</body>
+</html>
