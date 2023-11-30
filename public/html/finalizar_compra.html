@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>carrito</title>
+    <title>Finalizar Compra</title>
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,6 +30,56 @@ header .buscador{
 }
 header .input-group{
     width: 480%;
+}
+main .mistarjetas{
+    display: flex;
+    gap: 32px;
+    padding: 16px;   
+}
+
+main .mistarjetas .contenedor-tarjetas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 85%;
+    margin-bottom: 64px;
+    border: 1px solid var(--primario);
+    border-radius: 8px;
+    padding-bottom: 16px;
+    text-align: center;
+}
+
+main .mistarjetas .contenedor-tarjetas-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    border-radius: 8px;
+    padding: 16px 64px;
+    text-align: center;
+    margin-top: -32px;   
+}
+
+main .mistarjetas .selecciona-tarjeta {
+   background-color: var(--blanco);
+   color: var(--primario);
+   border: 1px solid var(--secundario);
+   /* padding: 16px 40px; */
+}
+
+main .mistarjetas .selecciona-tarjeta a{
+   color: var(--secundario);
+   padding: 16px 40px;
+   font-weight: 500
+}
+
+main .mistarjetas .contenedor-tarjetas input {
+   background-color: var(--blanco);
+   color: var(--secundario);
+   border: 2px solid var(--secundario);
+   padding: 16px 80px;
+   font-weight: 500;
 }
     </style>
 
@@ -78,12 +127,29 @@ header .input-group{
 
 <main class="wrap">
     <div class="micarrito">
-        <h3 class="bold m-color">Mi Carrito</h3>
-        <i class="bi bi-box-arrow-right m-color h3"></i>
-        <input type="text" placeholder="Formas de Pago" class="btn">
+        <input type="text" placeholder="Mi Carrito" class="btn">
         <i class="bi bi-box-arrow-right m-color h3"></i>
         <input type="text" placeholder="Finalizar Compra" class="btn">
+        <i class="bi bi-box-arrow-right m-color h3"></i>
+        <h3 class="bold m-color" >Finalizar Compra</h3>     
     </div>
+
+    <div class="cart-contenedor-principal"> <!--ABRE CONTENEDOR GENERAL-->
+
+    <div class="mistarjetas"> <!--Abre contenedor principal-->    
+            <div class="contenedor-tarjetas">
+                <h3>Dirección de envío</h3>
+                <input type="text" id="nombre" placeholder="Nombre" class="btn">
+                <input type="text" id="apellidos" placeholder="Apellidos" class="btn">
+                <input type="email" id="email" placeholder="Email" class="btn">
+                <input type="text" id="calle" placeholder="Calle"  class="btn">
+                <input type="text" id="numero" placeholder="Número" class="btn">
+                <input type="text" id="provincia" placeholder="Provincia" class="btn">
+                <input type="text" id="codigo_postal" placeholder="Código postal" class="btn">
+                <input type="text" id="pais" placeholder="País" class="btn">
+                <button type="button" onclick="registroNuevaDirección()"><a href="#" class="btn" id="mistarjetas">Añadir dirección de envío</a>
+            </div>  
+    </div> <!--Cierra contenedor principal-->
 
     <div class="cart-contenedor-principal"> <!--Abre contenedor principal Mi carrito-->
         <div class="cart-productos">  <!--Abre contenedor productos añadidos-->
@@ -155,6 +221,8 @@ header .input-group{
         </div> <!--Cierra contenedor Resumen Pedido-->
 
     </div> <!--Cierra contenedor principal Mi carrito-->
+
+</div>  <!--CIERRA CONTENEDOR GENERAL-->
 </main>
 <footer class="jumbotron-footer">
     <div class="wrap-footer">  <!--Apertura contenedor general footer-->
@@ -219,7 +287,6 @@ header .input-group{
     </div> <!--Cierre contenedor uno pie de página-->
 </div> <!--Cierre contenedor general footer-->
 </footer>
-
-<script src="/js/carrito.js"></script>
+<script src="/js/formas_pago.js"></script>
 </body>
 </html>

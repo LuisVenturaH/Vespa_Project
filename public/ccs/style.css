@@ -63,7 +63,21 @@ main #h1-index {
     text-shadow: 2px 2px 4px var(--negro);
 }
 
-/* Hasta aquí todo bien*/
+.micarrito{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    width: 80%;
+    margin: auto;
+}
+
+main .micarrito input{
+    background-color: var(--blanco);
+    border: 2px solid var(--gris);
+    padding: 16px;
+    text-align: center;
+    color: var(--secundario);
+}
 
 
 main .h4 {
@@ -122,7 +136,9 @@ small, .text_small {font-size: 0.8rem;}
 /* Cambia el color del marcador de posición en campos de entrada (placeholder) */
 
 input::placeholder {
-    color: var(--primario); 
+    color: var(--verde_italia);
+    text-align: center;
+    font-weight: 400; 
 }
 
 .bold {
