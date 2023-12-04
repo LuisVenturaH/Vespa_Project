@@ -3,18 +3,17 @@ const host = 'http://localhost:8000';
 // TRAE LISTADO DE TARJETAS DEL DB PARA INSENTARLO EN EL DOM
 
 window.addEventListener("load", function(event){
-
 fetch(`${host}/tarjetas`)
+
 .then(function(response){
-    
-    return response.json();
+     return response.json();
 })
 .then(function(json){
     const tarjetaContainerDiv = document.getElementById("tarjetas_registradas");
     tarjetaContainerDiv.innerHTML = '<div>';
     for (let i = 0; i < json.length; i++) {
         if (json[i] === 0) {
-    alert("Debes seleccionar una tarjeta");
+    alert("Debes seleccionar una tarjeta o agregar una");
  } else {
     tarjetaContainerDiv.innerHTML += `
    
@@ -81,5 +80,41 @@ else {
 
 
 
+//==========>>>> ENDOPOINT CLIENTES
+                //==========>>>> AGREGAR DIRECCION DE ENVIO
 
+function registroNuevaDirección () {
+    const nombre = document.getElementById("nombre").value;
+    const apellidos = document.getElementById("apellidos").value;
+    const email = document.getElementById("email").value;
+    const calle = dpocument.getElementById("calle");
+    const numero = document.getElementById("numero").value;
+    const provincia = document.getElementById("provincia").value;
+    const codigo_postal = document.getElementById("codigo_postal").value;
+    const pais = document.getElementById("pais").value;
+                
+    if (nombre === "" || apellidos === "" || email === "" || calle === "" || provincia === "" || codigo_postal === "" || pais === ""){
+        alert ("Has dejado alguno de los campos en blanco. Rellene todos los campos")
+    }
+    else {
+        alert ("Dirección completada correctamente");
+                
+        fetch(`${host}/direccion`, {
+            method : "PUT",
+            headers: {
+                "content-type": "application/json"
+            },
+                
+            body: JSON.stringify({
+                nombre: nombre,
+                apellidos: apellidos,
+                email: email,
+                calle: calle,
+                numero: numero,
+                provincia: provincia,
+                codigo_postal: codigo_postal,
+                pais: pais})
+          })
+       }
+}
 

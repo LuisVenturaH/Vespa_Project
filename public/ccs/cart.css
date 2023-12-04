@@ -38,7 +38,7 @@ gap: 32px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 32px;
     width: 80%;
     margin: auto;
@@ -70,8 +70,8 @@ main .cart-contenedor-interno {
 
 main .cart-productos {
     display: flex;
-    flex-direction: column;
     gap: 16px;
+    flex-direction: column;
     /* align-items: center;
     border: 1px solid var(--secundario);
     border-radius: 8px;
@@ -81,7 +81,7 @@ main .cart-productos {
 }
 main .cart-contenedor-descripcion {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     border: 1px solid var(--secundario);
     border-radius: 8px;
     padding: 16px;

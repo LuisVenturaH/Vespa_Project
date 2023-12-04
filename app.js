@@ -47,6 +47,41 @@ app.get(`/carrusel`, function(request, response){
 })
 
 
+//==========>>>> ENDOPOINT REGISTRO USUARIO
+                //==========>>>> OBTENER USUARIO
+
+
+app.get(`/usuarios`, function(request, response){
+    connection.query("SELECT * FROM clientes", function(error, result, fields){
+    handleSQLError(response, error, result, function(result){
+    let usuarios = [];
+                
+    for (let i = 0; i < result.length; i++){
+    usuarios[i] = result[i];     
+}
+    response.send(usuarios);
+    })
+ })
+})
+
+app.post('/login', function(request, response){
+    const email = request.body.email;
+    const password = request.body.password;
+    connection.query(`SELECT * FROM clientes WHERE email = "${email}" and password = "${password}"`, function(error, result, fields){
+        handleSQLError(response, error, result, function(result){
+            if(result.length == 0) {
+                response.send({message: "Email o password incorrectos"});
+            }
+            else {
+                response.send({message: "Login correcto"});
+            }
+        })
+    })
+})
+
+
+
+
 //==========>>>> ENDOPOINT PRODUCTOS
 
                 //==========>>>> OBTENER TODOS LOS PRODUCTOS
@@ -57,7 +92,7 @@ app.get('/productos', function(request, response){
 
             for (let i = 0; i < result.length; i++){
                 productos[i] = result[i];
-               console.log(result[i].id);
+               
             }
             response.send(productos);
         })
@@ -76,6 +111,7 @@ app.get('/productos/:id', function(request, response){
             else {
                 response.send(result[0]);
             };
+           
         });
     });
 });
@@ -118,19 +154,20 @@ app.get('/precioproducto/:id', function(request, response){
 //==========>>>> ENDOPOINT COMPRA
                 //==========>>>>OBTENER COMPRA DESDE DB
 app.get('/compras/:id', function(request, response) {
-const compraId = request.params.id;
-                
-connection.query('SELECT * FROM compras WHERE id = ?', [compraId], function(error, result, fields) {
+const comprasId = request.params.id;
+
+connection.query('SELECT productos.id, productos.nombre, productos.precio, productos.descripcion_corta, productos.especificaciones, compra_productos.compra_id FROM productos JOIN compra_productos ON productos.id = compra_productos.producto_id WHERE compra_productos.compra_id = ?', 
+[comprasId], function(error, result, fields) {
  handleSQLError(response, error, result, function(result) {
-    if (result.length === 0) {
-    response.send({});
-    } else {
-    response.send(result[0]);
+    let carrito_compra = [];
+    for (let i = 0; i < result.length; i++){
+        carrito_compra[i] = result[i];
     }
+    response.send(carrito_compra);
  });
  });
 });
-                
+             
 
                 //==========>>>>OBTENER RESUMEN TOTAL COMPRA DESDE DB
 app.get('/compratotal', function(request, response){
@@ -140,8 +177,7 @@ app.get('/compratotal', function(request, response){
                 if (result.length > 0) {
                     let totalPrecio = parseInt(result[0].total_precio);                    
                     response.send({ total: totalPrecio });
-                    console.log(totalPrecio);
-                } else {
+                   } else {
                     response.send({ total: 0 });
                     console.log("No hay resultados para la compra especificada");
                 }
@@ -189,6 +225,30 @@ app.post('/nueva_tarjeta', function(request, response){
     });
 });
 
+
+//==========>>>> ENDOPOINT CLIENTES
+                //==========>>>> AGREGAR DIRECCION DE ENVIO
+
+app.put('/direccion',function(request, response){
+    const nombre = request.body.nombre;
+    const apellidos = request.body.apellidos;
+    const email = request.body.emal;
+    const calle = request.body.calle;
+    const numero = request.body.numero;
+    const provincia = request.body.provincia;
+    const codigo_postal = request.body.codigo_postal;
+    const pais = request.body.pais;
+
+    connection.query(`INSERT INTO clientes (nombre, apellidos, email, calle, numero, provincia, codigo_postal, pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    [nombre, apellidos, email, calle, numero, provincia, codigo_postal, pais], function(error, result, fields){
+        if(error){
+            console.error("Error al insertar la dirección, error");
+            response.status(500).send({message: "Error al ingresar dirección"});
+            return;
+        }
+        console.log("Dirección agregada correctamente");
+    });
+});
 
 
 //==========>>>> AGREGAR UN PRODUCTO AL CARRITO. METODO POST. RUTA CARRITO/AGREGAR. FUNCION agregarAlCarrito
