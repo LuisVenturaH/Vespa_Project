@@ -79,6 +79,24 @@ app.post('/login', function(request, response){
     })
 })
 
+                    //==========>>>> REGISTRO NUEVOS CLIENTES
+app.post('/nuevo_registro', function(request, response){
+    const nombre = request.body.nombre;
+    const apellidos = request.body.apellidos;
+    const email = request.body.email;
+    const password = request.body.password;
+    connection.query(`INSERT INTO clientes (nombre, apellidos, email, password) VALUES (?, ?, ?, ?)`, [nombre, apellidos, email, password], function(error, result, fields){
+        if (error){
+            console.log("Error al insertar usuario", error);
+            response.status(500).send({message: "Error al insertar usuario"});
+            return;
+        }
+        else {
+            console.log("Registro completado correctamente");
+        }
+    })
+})
+
 
 
 

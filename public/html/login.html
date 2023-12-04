@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vespa Project</title>
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <!--Bootstraps Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"/>
+    <!--Mis hojas de estilo-->
+    <link rel="stylesheet" href="/ccs/style.css"/>
+    <link rel="stylesheet" href="/ccs/header.css">
+    <link rel="stylesheet" href="/ccs/button.css">
+    <link rel="stylesheet" href="/ccs/card.css">
+    <link rel="stylesheet" href="/ccs/footer.css">
+    <link rel="stylesheet" href="/ccs/form.css">
+  </head>
+<body>   
+  <div class="cart-contenedor-principal">
+
+    <div class="direccion">
+      <h2>Iniciar sesión</h2>
+      <h3>Accede con tus datos anteriores</h3>
+      <div>
+        <input type="email" id="usuario" placeholder="Email" class="btn">
+        <input type="password" id="contrasena" placeholder="Contraseña"  class="btn">
+        <button type="button" onclick="login()"><a href="#" class="btn" id="mistarjetas">Añadir dirección de envío</a>
+        </div>
+      </div>
+    
+    <div class="direccion"> <!--Abre contenedor nuevo registro-->    
+      <div class="contenedor-tarjetas">
+          <h2>Regístrate</h2>
+          <h3>Crea una cuenta para conseguir tu primer descuento</h3>
+          <input type="text" id="nombre" placeholder="Nombre" class="btn">
+          <input type="text" id="apellidos" placeholder="Apellidos" class="btn">
+          <input type="email" id="email" placeholder="Email" class="btn">
+          <input type="password" id="password" placeholder="Contraseña"  class="btn">
+          <button type="button" onclick="registroNuevoUsario()"><a href="#" class="btn" id="mistarjetas">Añadir dirección de envío</a>
+      </div>  
+</div> <!--Cierra contenedor principal-->
+  </div>
+<script src="/js/login.js"></script>
+</body>
+</html> 
