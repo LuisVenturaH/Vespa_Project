@@ -63,7 +63,7 @@ function login() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data); // Puedes manejar la respuesta de la API aquí si es necesario
+            console.log(data);
         })
         .catch(error => {
             console.error("Error en la solicitud:", error);

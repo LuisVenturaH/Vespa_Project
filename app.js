@@ -245,8 +245,47 @@ app.post('/nueva_tarjeta', function(request, response){
 
 
 //==========>>>> ENDOPOINT CLIENTES
-                //==========>>>> AGREGAR DIRECCION DE ENVIO
 
+                        //==========>>>> OBTENER DATOS CLIENTES RELACIONADO CON COMPRA_ID
+app.get('/clientes/:compra_id', function(request, response){
+const cliente_id = request.params.clientes.cliente_id;
+const nombre = request.params.cliente.nombre;
+const apellidos = request.params.clientes.apellidos;
+const email = request.params.clientes.email;
+const calle = request.params.clientes.calle;
+const numero = request.params.clientes.numero;
+const provincia = request.params.clientes.provincia;
+const codigo_postal = request.params.clientes.codigo_postal;
+const pais = request.params.clientes.pais;
+const telefono = request.params.compras.telefono;
+const compra_id = request.params.compra_producto.compra_id;
+const producto_id = request.params.compra_producto.producto_id;
+const precio = request.params.compra_producto.precio;
+const total = request.params.compra_producto.total;
+
+                        
+connection.query(`SELECT clientes.id, clientes.nombre, clientes.apellidos, clientes.email, clientes.calle,
+clientes.numero, clientes.provincia, clientes.codigo_postal, clientes.pais,
+compras.telefono, compra_productos.compra_id, compra_productos.producto_id, compra_productos.precio, compra_productos.total
+FROM clientes 
+JOIN compras 
+ON clientes.id = compras.usuario_id 
+JOIN compra_productos 
+ON clientes.id = compra_productos.usuario_id 
+JOIN metodo_pago
+ON clientes.id = metodo_pago.usuario_id`, function(error, result, fields){
+handleSQLError(response, error, result, function(result){
+    if (result.length == 0){
+        response.send({});
+    }
+    else {
+        response.send(result[0]);
+    };
+});
+});
+});
+
+                        //==========>>>> AGREGAR DIRECCION DE ENVIO
 app.put('/direccion',function(request, response){
     const nombre = request.body.nombre;
     const apellidos = request.body.apellidos;
