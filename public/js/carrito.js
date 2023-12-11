@@ -60,16 +60,16 @@ window.addEventListener("load", function(event){
                             <div> <!--Imagen producto-->
                                 <img src="/img/${item.nombre}.jpg" alt="Vespa Electrica" />
                             </div>
-                            <div class="cart-contenedor-descripcion">
                                 <p><span class="bold">${item.nombre}</span></p>
                                 <div class="h4 cart-contenedor-descripcion">${item.precio}<i class="bi bi-currency-euro m-color"></i></div>
-                            </div>
-                            <div class="cart-contenedor-interno">  
-                                <i class="bi bi-dash-square m-color"></i>
-                                <p>1</p>
-                                <i class="bi bi-plus-square m-color"></i>
-                                <i class="bi bi-trash3-fill"></i>    
-                            </div>
+                            
+                                <div class="cart-contenedor-interno">  
+                                    <i class="bi bi-dash-square m-color"></i>
+                                    <p>1</p>
+                                    <i class="bi bi-plus-square m-color"></i>
+                                    <i class="bi bi-trash3-fill"></i>    
+                                </div>
+                           
                         </div> <!--Cierra contenedor-->
                     `;
                 });
@@ -94,7 +94,7 @@ window.addEventListener("load", function(event) {
             const totalCompra = json.total || 0;
 
             compraTotalDiv.innerHTML = `
-                <div class="h4 cart-contenedor-descripcion">
+                <div class="h4 bold">
                     ${totalCompra} <i class="bi bi-currency-euro m-color"></i>
                 </div>`;
         })
@@ -103,7 +103,7 @@ window.addEventListener("load", function(event) {
         });
 });
 
-// Funcion para llevar la  información del usuario a la pasarela de pago 
+// Funcion para llevar la  información del usuario a la pasarela de pago    
 window.addEventListener("load", function (event) {
     // Obtener información del carrito
     fetch(`${host}/compras/1`)
@@ -125,7 +125,7 @@ window.addEventListener("load", function (event) {
                 });
 
                 // Obtener información del usuario
-                fetch(`${host}/usuario`)
+                fetch(`${host}/clientes`)
                     .then(function (response) {
                         return response.json();
                     })
@@ -145,3 +145,46 @@ window.addEventListener("load", function (event) {
             console.error("Error al cargar el carrito de compras:", error);
         });
 });
+
+function agregarDatosCliente(){
+    const nombre = document.getElementById("nombre").value;
+    const apellidos = document.getElementById("apellidos").value;
+    const email = document.getElementById("email").value;
+    const calle = document.getElementById("calle").value;
+    const numero = document.getElementById("numero").value;
+    const provincia = document.getElementById("provincia").value;
+    const codigo_postal = document.getElementById("codigo_postal").value;
+    const pais = document.getElementById("pais").value;
+
+    if(nombre === "" || apellidos === "" || email === "" || calle === "" || provincia === "" || codigo_postal === "" || pais === ""){
+        alert("Has dejado algún dato incompleto. Favor completar el formulario")
+    }
+    else{
+        console.log("Información registrada correctamente!!");
+        window.location.href = "http://localhost:8000/html/finalizar_compra.html";
+
+        fetch(`${host}/datos_cliente`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nombre: nombre,
+                apellidos: apellidos,
+                email: email,
+                calle: calle,
+                numero: numero,
+                provincia: provincia,
+                codigo_postal: codigo_postal,
+                pais: pais
+            })
+        })
+        .then(response=> response.json())
+        .then(data=>{
+            console.log(data);
+        })
+        .catch(error=>{
+            console.error("Error al registrar datos de usuario", error);
+        });
+    }
+}

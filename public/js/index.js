@@ -15,10 +15,10 @@ window.addEventListener("load", function(event){
                   <input type="search" id="buscador" placeholder="!El que busca encuentra!"/>
                   <i class="bi bi-search"></i>
               </div>
-              
+            
     
               <!-- Botón carrito -->
-                <button type="button"><a href="http://localhost:8000/html/carrito.html" class="btn" id="carrito">
+                <button type="button" class="btn"><a href="http://localhost:8000/html/carrito.html" class="carrito" id="carrito">
                   <i class="bi bi-cart-fill"></i>Carrito<span>3</span></a></button>    
                       <!-- Encabezado logo -->
                       <a href="http://localhost:8000/index.html">        
@@ -49,7 +49,7 @@ window.addEventListener("load", function(event){
             <div  class="wrap">
               <h1 id="h1-index">Novedades 2024</h1>
               <h3 class="h4">¡Descubre lo que Vespa tiene para tí!</h3>
-              <button type="button" class="btn-block"><a href="#">Ver</a></button>
+              <button type="button" class="btn"><a href="#">Ver todos los productos</a></button>
             </div>   
           </section>
 
@@ -296,7 +296,7 @@ window.addEventListener("load", function(event){
                 ipsam odit sapiente autem nulla porro reprehenderit. Unde optio
                 accusantium, nisi, vitae quos commodi aut porro similique, reiciendis
                 libero quo!
-            </cite>
+            </cite> 
 
             <div class="valoraciones"> <!--Contenedor valoración clientes-->
               <div class="valoraciones-positivas">
@@ -325,8 +325,7 @@ window.addEventListener("load", function(event){
         <div class="iconos"> <!--Pago seguro-->
           <i class="bi bi-cone-striped icono"></i>
           <div class="texto-icono">
-            <h5>Pago seguro</h5>
-            <p>100% garantizado</p>
+            <p><span class="bold">Pago seguro. </span>100% garantizado</p>
           </div>
         </div>
       
@@ -334,8 +333,7 @@ window.addEventListener("load", function(event){
         <div  class="iconos"> <!--Envío gratis-->
             <span><i class="bi bi bi-truck icono"></i></span>
             <div class="texto-icono">
-                <h5>Envío gratis</h5>
-                <p>En pedidos +100€</p>
+              <p><span class="bold">Envío gratis. </span>Tu Vespa en casa</p>
             </div>
         </div>
     
@@ -343,16 +341,14 @@ window.addEventListener("load", function(event){
         <div  class="iconos"> <!--2 años garantía-->
             <span><i class="bi bi-check-square-fill icono"></i></span>
             <div class="texto-icono">
-                <h5>2 años de garantía</h5>
-                <p>En todos los productos</p>
+              <p><span class="bold">2 años de garantía. </span>En todos los productos</p>
             </div>
         </div>
       
         <div class="iconos"> <!--Ofertas únicas-->
             <span><i class="bi bi-gift-fill icono"></i></span>
             <div class="texto-icono">
-                <h5>Ofertas únicas</h5>
-                <p>Precios de mayoristas</p>
+              <p><span class="bold">Ofertas únicas. </span>Precios de fábrica</p>
             </div>
         </div>
     

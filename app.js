@@ -50,8 +50,7 @@ app.get(`/carrusel`, function(request, response){
 //==========>>>> ENDOPOINT REGISTRO USUARIO
                 //==========>>>> OBTENER USUARIO
 
-
-app.get(`/usuarios`, function(request, response){
+app.get(`/clientes`, function(request, response){
     connection.query("SELECT * FROM clientes", function(error, result, fields){
     handleSQLError(response, error, result, function(result){
     let usuarios = [];
@@ -80,12 +79,18 @@ app.post('/login', function(request, response){
 })
 
                     //==========>>>> REGISTRO NUEVOS CLIENTES
-app.post('/nuevo_registro', function(request, response){
+app.put('/nuevo_registro', function(request, response){
     const nombre = request.body.nombre;
     const apellidos = request.body.apellidos;
     const email = request.body.email;
     const password = request.body.password;
-    connection.query(`INSERT INTO clientes (nombre, apellidos, email, password) VALUES (?, ?, ?, ?)`, [nombre, apellidos, email, password], function(error, result, fields){
+    const calle = "";
+    const numero = "";
+    const provincia = "";
+    const codigo_postal = "";
+    const pais = "";
+    connection.query(`INSERT INTO clientes (nombre, apellidos, email, password, calle, numero, provincia, codigo_postal, pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+    [nombre, apellidos, email, password, calle, numero, provincia, codigo_postal, pais], function(error, result, fields){
         if (error){
             console.log("Error al insertar usuario", error);
             response.status(500).send({message: "Error al insertar usuario"});
@@ -96,9 +101,6 @@ app.post('/nuevo_registro', function(request, response){
         }
     })
 })
-
-
-
 
 //==========>>>> ENDOPOINT PRODUCTOS
 
@@ -128,6 +130,7 @@ app.get('/productos/:id', function(request, response){
             }
             else {
                 response.send(result[0]);
+                console.log(result[0])
             };
            
         });
@@ -248,20 +251,20 @@ app.post('/nueva_tarjeta', function(request, response){
 
                         //==========>>>> OBTENER DATOS CLIENTES RELACIONADO CON COMPRA_ID
 app.get('/clientes/:compra_id', function(request, response){
-const cliente_id = request.params.clientes.cliente_id;
-const nombre = request.params.cliente.nombre;
-const apellidos = request.params.clientes.apellidos;
-const email = request.params.clientes.email;
-const calle = request.params.clientes.calle;
-const numero = request.params.clientes.numero;
-const provincia = request.params.clientes.provincia;
-const codigo_postal = request.params.clientes.codigo_postal;
-const pais = request.params.clientes.pais;
-const telefono = request.params.compras.telefono;
-const compra_id = request.params.compra_producto.compra_id;
-const producto_id = request.params.compra_producto.producto_id;
-const precio = request.params.compra_producto.precio;
-const total = request.params.compra_producto.total;
+const cliente_id = request.params.cliente_id;
+const nombre = request.params.nombre;
+const apellidos = request.params.apellidos;
+const email = request.params.email;
+const calle = request.params.calle;
+const numero = request.params.numero;
+const provincia = request.params.provincia;
+const codigo_postal = request.params.codigo_postal;
+const pais = request.params.pais;
+const telefono = request.params.telefono;
+const compra_id = request.params.compra_id;
+const producto_id = request.params.producto_id;
+const precio = request.params.recio;
+const total = request.params.total;
 
                         
 connection.query(`SELECT clientes.id, clientes.nombre, clientes.apellidos, clientes.email, clientes.calle,
@@ -282,14 +285,15 @@ handleSQLError(response, error, result, function(result){
         response.send(result[0]);
     };
 });
+console.log(`${result[0].precio} linea 288 de app.js`)
 });
 });
 
-                        //==========>>>> AGREGAR DIRECCION DE ENVIO
-app.put('/direccion',function(request, response){
+                        //==========>>>> AGREGAR DATOS DIRECCION DE ENVIO
+app.put('/datos_cliente',function(request, response){
     const nombre = request.body.nombre;
     const apellidos = request.body.apellidos;
-    const email = request.body.emal;
+    const email = request.body.email;
     const calle = request.body.calle;
     const numero = request.body.numero;
     const provincia = request.body.provincia;
@@ -299,14 +303,40 @@ app.put('/direccion',function(request, response){
     connection.query(`INSERT INTO clientes (nombre, apellidos, email, calle, numero, provincia, codigo_postal, pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     [nombre, apellidos, email, calle, numero, provincia, codigo_postal, pais], function(error, result, fields){
         if(error){
-            console.error("Error al insertar la dirección, error");
+            console.error("Error al insertar los datos", error);
             response.status(500).send({message: "Error al ingresar dirección"});
             return;
         }
-        console.log("Dirección agregada correctamente");
+        console.log("Datos agregados correctamente");
     });
 });
 
+
+                    //==========>>>> AGREGAR CANTIDAD PRODUCTO
+app.get(`/cantidad_producto/:compra_id`, function(request, response){
+    const compra_id = request.params.compra_id;
+    const cantidad_producto = request.params.cantidad_producto;
+
+connection.query(`SELECT * FROM compra_productos WHERE compra_id = "${compra_id}"`, function(error, result, fields){
+handleSQLError(response, error, result, function(error){
+
+// for (let i = 0; i < result.length; i++){
+//     cantidad_producto[i] = result[i];
+    
+//   }
+//   response.send(cantidad_producto)
+//   console.log(cantidad_producto)
+
+if (result.length == 0 ){
+    response.send({});
+}
+else{
+    response.send(result[0]);   
+}
+
+})
+})
+})
 
 //==========>>>> AGREGAR UN PRODUCTO AL CARRITO. METODO POST. RUTA CARRITO/AGREGAR. FUNCION agregarAlCarrito
 

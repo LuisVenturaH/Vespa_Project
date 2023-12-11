@@ -33,7 +33,6 @@ header .input-group{
 }
 main .direccion{
     display: flex;
-    gap: 32px;
     padding: 16px;   
 }
 
@@ -42,7 +41,7 @@ main .direccion .contenedor-tarjetas {
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    margin-bottom: 64px;
+    margin-bottom: 24px;
     border: 1px solid var(--primario);
     border-radius: 8px;
     padding: 16px;
@@ -57,22 +56,24 @@ main .direccion .contenedor-tarjetas input {
    font-weight: 500;
 }
 
-main .cart-contenedor-principal{
-    flex-direction: row;
-   
-}
+/* main .cart-contenedor-principal{
+    flex-direction: row;  
+} */
+
 main .cart-contenedor-principal img{
     width: 60%;
 }
 
 main .cart-contenedor-principal p{
-    font-size: 0.75rem;
+    font-size: 1rem;
+    margin: 0;
 }
 
 .detalleCompra {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 24px;
+    margin: 16px 16px 0 0;
 }
 
 #carritoFinalizarCompra {
@@ -105,14 +106,14 @@ main .cart-resumen-producto .btn-secundario {
     padding: 16px 60px;
     margin: 24px 0;
 }
-
-
-
 main .cart-contenedor-descripcion {
     padding: 8px;
-    gap: 8px;
+    gap: 32px;
     align-items: center;
     margin: inherit;
+}
+main .h4{
+    margin: 0;
 }
     </style>
 
@@ -134,7 +135,7 @@ main .cart-contenedor-descripcion {
                 </div>
       
                 <!-- Botón carrito -->
-                  <button type="button"><a href="http://localhost:8000/html/carrito.html" class="btn" id="carrito">
+                  <button type="button"  class="btn" ><a href="http://localhost:8000/html/carrito.html" id="carrito">
                     <i class="bi bi-cart-fill"></i>Carrito<span>3</span></a></button>    
               </div>
           </header>
@@ -180,7 +181,7 @@ main .cart-contenedor-descripcion {
                     <input type="text" id="provincia" placeholder="Provincia" class="btn">
                     <input type="text" id="codigo_postal" placeholder="Código postal" class="btn">
                     <input type="text" id="pais" placeholder="País" class="btn">
-                    <button type="button" onclick="registroNuevaDirección()"><a href="#" class="btn" id="mistarjetas">Añadir dirección de envío</a>
+                    <button type="button" onclick="agregarDatosCliente()" class="btn"><a href="#" id="mistarjetas">Añadir dirección de envío</a>
                 </div>  
         </div> <!--Cierra contenedor principal-->
 
@@ -191,7 +192,7 @@ main .cart-contenedor-descripcion {
             
                 <div class="cart-resumen-producto"> <!--Abre contenedor Resumen Pedido-->
                     <div>
-                        <h4>Resumen de Pedido</h4>
+                        <h4 class="bold">Resumen de Pedido</h4>
                         <p>Continúa con el proceso de pago</p>
                     </div>
                     <div id="compraTotal">
@@ -199,7 +200,7 @@ main .cart-contenedor-descripcion {
                     </div>
                     
                     <div class="card-botones"> <!--Contenedor botones del producto 1-->
-                        <button type="button" class="btn-secundario"><a href="http://localhost:8000/html/finalizar_compra.html">Proceder al pago</a></button>
+                        <button type="button" class="btn"><a href="http://localhost:8000/html/finalizar_compra.html">Proceder al pago</a></button>
                     </div>
 
                 </div> <!--Cierra contenedor Resumen Pedido-->

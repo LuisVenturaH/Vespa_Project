@@ -27,6 +27,7 @@ footer img {
 
 footer a {
     line-height: 1.8;
+    color: var(--blanco);
 }
 
 .contenedor-footer-2 {
@@ -62,9 +63,6 @@ footer .contenedor-footer-2 form {
     
 }
 
-footer .privacidad a {
-    color: var(--primario);
-}
 
 .iconos-footer {
     display: flex;

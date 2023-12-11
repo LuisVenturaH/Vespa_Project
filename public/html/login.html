@@ -1,48 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vespa Project</title>
-    <!--Google fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-    <!--Bootstraps Icons-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"/>
-    <!--Mis hojas de estilo-->
-    <link rel="stylesheet" href="/ccs/style.css"/>
-    <link rel="stylesheet" href="/ccs/header.css">
-    <link rel="stylesheet" href="/ccs/button.css">
-    <link rel="stylesheet" href="/ccs/card.css">
-    <link rel="stylesheet" href="/ccs/footer.css">
-    <link rel="stylesheet" href="/ccs/form.css">
-  </head>
-<body>   
-  <div class="cart-contenedor-principal">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vespa Project</title>
+        <!--Google fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" /> -->
+        <!--Bootstraps Icons-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"/>
+        <!--Mis hojas de estilo-->
+        <link rel="stylesheet" href="/ccs/style.css"/>
+        <link rel="stylesheet" href="/ccs/header.css">
+        <link rel="stylesheet" href="/ccs/button.css">
+        <link rel="stylesheet" href="/ccs/card.css">
+        <link rel="stylesheet" href="/ccs/footer.css">
+        <link rel="stylesheet" href="/ccs/form.css">
 
-    <div class="direccion">
-      <h2>Iniciar sesión</h2>
-      <h3>Accede con tus datos anteriores</h3>
-      <div>
-        <input type="email" id="usuario" placeholder="Email" class="btn">
-        <input type="password" id="contrasena" placeholder="Contraseña"  class="btn">
-        <button type="button" onclick="login()"><a href="#" class="btn" id="mistarjetas">inicia sesión</a>
+        <style>
+            .contenedor-login{
+                margin-top: 64px;
+                display: flex;
+                flex-direction: row;
+                gap: 32px;
+                width: 80%;
+                margin: 32px auto;
+            }
+            .contenedor-login-1{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: 1px solid var(--secundario);
+                border-radius: 8px;
+                padding: 16px;
+                margin: 16px;
+                gap: 16px;   
+            }
+            main h2{
+                font-size: 2rem;
+                margin: 0;
+                text-align: center;
+                color: var(--primario);
+            }
+            main h3{
+                font-size: 1.5rem;
+                margin: 0 16px;
+                text-align: center;
+            }
+            main .btn{
+                padding: 12px 60px;
+            }
+            .btn-login{
+                color: var(--primario);
+            }
+         
+
+        </style>
+    </head>
+<body>
+    <div class="jumbotron">  <!--Abre div jumbotrom-->
+        <header>
+          <div class="wrap">
+              <div class="input-group">
+                  <input type="search" id="buscador" placeholder="!El que busca encuentra!"/>
+                  <i class="bi bi-search"></i>
+              </div>
+
+              <button type="button"  class="btn" ><a href="http://localhost:8000/html/carrito.html" id="carrito">
+              <i class="bi bi-cart-fill"></i>Carrito<span>3</span></a></button>    
+                      
+              <a href="http://localhost:8000/index.html">        
+                  <img src="/img/logo_vespa.png" class="logo" alt="Logo Oficial Vespa"/></a>
+          </div>
+        </header>  <!--Hasta aqui bien-->
+
+        <div  class="menu-header">
+          <nav class="wrap"> <!--Inicio contenedor navegador cabecera-->
+                <div> <!--Contenedor navegador 1-->
+                  <ul>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                  </ul>
+                </div>
+        
+                <div> <!--Contenedor navegador 2-->
+                  <ul>
+                    <li><a href="#">Mis pedidos</a></li>
+                    <li><a href="#">Logout</a></li>
+                  </ul>
+          </nav>
         </div>
-      </div>
-    
-    <div class="direccion"> <!--Abre contenedor nuevo registro-->    
-      <div class="contenedor-tarjetas">
-          <h2>Regístrate</h2>
-          <h3>Crea una cuenta para conseguir tu primer descuento</h3>
-          <input type="text" id="nombre" placeholder="Nombre" class="btn">
-          <input type="text" id="apellidos" placeholder="Apellidos" class="btn">
-          <input type="email" id="email" placeholder="Email" class="btn">
-          <input type="password" id="password" placeholder="Contraseña"  class="btn">
-          <button type="button" onclick="registroNuevoUsuario()"><a href="#" class="btn" id="mistarjetas">Regístrate</a>
-      </div>  
-</div> <!--Cierra contenedor principal-->
-  </div>
+      </div>  <!--Cierra div jumbotrom-->
+
+    <main>
+        <div class="contenedor-login">
+            <div class="contenedor-login-1">
+                <!-- <div> -->
+                    <h2>Iniciar sesión</h2>
+                    <h3>Accede con tus datos anteriores</h3>
+                <!-- </div> -->
+                
+                <!-- <div> -->
+                    <input type="email" id="usuario" placeholder="Email" class="btn">
+                    <input type="password" id="contrasena" placeholder="Contraseña"  class="btn">
+                    <button type="button" onclick="login()" class="btn"><a href="#" class="btn-login" id="mistarjetas">inicia sesión</a>
+                <!-- </div> -->
+            </div>
+
+            <div class="contenedor-login-1"> <!--Abre contenedor nuevo registro-->   
+                    <!-- <div> -->
+                        <h2>Regístrate</h2>
+                        <h3>Crea una cuenta para conseguir tu primer descuento</h3>
+                        <input type="text" id="nombre" placeholder="Nombre" class="btn">
+                        <input type="text" id="apellidos" placeholder="Apellidos" class="btn">
+                        <input type="email" id="email" placeholder="Email" class="btn">
+                        <input type="password" id="password" placeholder="Contraseña"  class="btn">
+                        <button type="button" onclick="registroNuevoUsuario()"  class="btn"><a href="#"  class="btn-login" id="mistarjetas">Regístrate</a>
+                    <!-- </div>   -->
+            </div> <!--Cierra contenedor principal-->
+        </div>
+    </main>
+
+    <footer class="jumbotron-footer">
+            <div class="wrap-footer">  <!--Apertura contenedor general footer-->
+                    <div class="contenedor-footer-1"> <!--Inicio contenedor uno pie de página-->
+                        <div>
+                            <img src="/img/logo_vespa_blanco.png" class="image" alt="Logo Vespa Blanco" />
+                        </div>
+
+                        <div>
+                            <nav class="menu-footer-1"><!--Inicio contenedor navegador pie de página-->
+                                <div> <!--Contenedor navegador 1-->
+                                <ul>
+                                    <li><a href="#">Centro de ayuda</a></li>
+                                    <li><a href="#">Servicio al consumidor</a></li>
+                                    <li><a href="#">Contacto</a></li>
+                                </ul>
+                                </div>
+                        
+                                <div> <!--Contenedor navegador 2-->
+                                <ul>
+                                    <li><a href="#">Política de privacidad</a></li>
+                                    <li><a href="#">Condiciones de compra</a></li>
+                                    <li><a href="#">Aviso y política de cookies</a></li>
+                                    <li><a href="#">Opiniones de cliente</a></li>
+                                </ul>
+                                </div>
+                            </nav> <!--Cierre contededor navegador pie de página-->
+                        </div>
+                    </div> <!--Cierre contenedor uno pie de página-->
+
+                    <div class="contenedor-footer-2"> <!--Inicio contenedor dos pie de página-->
+                        
+                            <div> <!--ontenedor formulario newslatter pie de página-->
+                                    <div>
+                                        <h4>Únete a nuestras newletter y no te pierdas las novedades</h4>
+                                    </div>
+
+                                    <form>
+                                        <input type="text" class="suscripcion" placeholder="Introduce tu email">
+                                        <input type="submit" class="btn su" value="Suscribirme">
+                                    </form>
+
+                                    <div class="politica">
+                                        <input type="checkbox" id="politicas" name="politicas" required>
+                                        <label>Acepto las <a href="#">políticas de privacidad</a></label>
+                                    </div>
+                            </div> 
+
+                            <div> <!--Contenedor redes sociales-->
+                                    <div>
+                                            <p class="h4">Síguemos en redes sociales</p>
+                                    </div>
+
+                                    <div class="iconos-footer">
+                                            <a href="#"><i class="bi bi-facebook"></i></a>
+                                            <a href="#"><i class="bi bi-youtube"></i></a>
+                                            <a href="#"><i class="bi bi-twitch"></i></a>
+                                            <a href="#"><i class="bi bi-instagram"></i></a>
+                                    </div>
+
+                            </div>
+                    </div> <!--Cierre contenedor uno pie de página-->
+            </div> <!--Cierre contenedor general footer-->
+    </footer>
 <script src="/js/login.js"></script>
+    
 </body>
-</html> 
+</html>

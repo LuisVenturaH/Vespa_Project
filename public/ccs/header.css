@@ -1,8 +1,6 @@
 
 header {
-    
     padding: 16px 0;
-
 }
 
 header .wrap {
@@ -12,6 +10,10 @@ header .wrap {
     justify-content: space-between;
     gap: 32px;
     margin-bottom: 32px;
+}
+
+header .carrito {
+    color: var(--primario);
 }
 
 .logo {
@@ -48,14 +50,14 @@ header .bi-search {
 
 #carrito span {
     position:absolute;
-    top: -8px;
-    right: -8px;
+    top: -24px;
+    right: -24px;
     font-size: 0.75rem;
     font-weight: bold;
     width: 24px;
     height: 24px;
-    color: var(--primario);
-    background-color: var(--secundario);
+    color: var(--secundario);
+    background-color: var(--primario);
     border: 0.5px solid var(--blanco);
     border-radius: 50%;
     display: flex;
@@ -91,5 +93,8 @@ header .bi-search {
     display: inline-block;
     margin-right: 16px;
 }
+ .menu-header a {
+    color: var(--blanco);
+ }
 
 

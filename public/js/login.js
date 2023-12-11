@@ -11,10 +11,10 @@ function registroNuevoUsuario() {
         alert("Has dejado algún campo en blanco, favor completarlo para proceder con el registro");
     } else {
         alert("Registro completado correctamente");
-        window.location.href = "http://localhost:8000/html/index.html";
+        window.location.href = "http://localhost:8000/html/login.html";
 
         fetch(`${host}/nuevo_registro`, {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -34,7 +34,6 @@ function registroNuevoUsuario() {
         });
     }
 }
-
 
 // Funcion para login (PROBADO Y FUNCIONA CORRECTAMENTE)
 function login() {

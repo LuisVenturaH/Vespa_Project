@@ -1,9 +1,21 @@
-.btn, button {
-    color: var(--blanco);
-    background-color: var(--primario);
-    border: none;
+.btn {
+    color: var(--secundario);
+    background-color: var(--blanco);
+    border: 1px solid var(--secundario);
     border-radius: 8px;
-    padding: 8px 16px;
+    padding: 12px 16px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    transform: all 0.3;
+}
+
+.btn-secundario {
+    color: var(--black);
+    background-color: var(--gris);
+    border: 1px solid var(--secundario);
+    border-radius: 8px;
+    padding: 12px 16px;
     font-weight: bold;
     text-decoration: none;
     display: inline-block;
@@ -16,19 +28,13 @@
   
 }
 
-button.btn-secundario { /*Controla los estilos de los botones secundarios*/
-    background-color: var(--secundario);
-    border: 1px solid var(--secundario);
-}
-
-
 /*Estilos para botones de navegación*/
 
 ul, li, a {     /*Quitar estilos a las listas*/
     list-style: none;
     text-decoration: none;
     list-style: none;
-    color: var(--blanco);
+    color: var(--secundario);
   }
   
 
@@ -49,7 +55,7 @@ ul, li, a {     /*Quitar estilos a las listas*/
 .iconos {
    display: flex;
    align-items: center;
-   border: 1px solid var(--primario);
+   /* border: 1px solid var(--primario); */
    border-radius: 8px;
    padding: 0 32px;
    /* background-color: var(--blanco); */
@@ -70,7 +76,8 @@ ul, li, a {     /*Quitar estilos a las listas*/
    flex-direction: column;
    text-align: center;
    font-weight: 600;
-
+   text-decoration: none;
+   padding: 24px;
 }
 
 

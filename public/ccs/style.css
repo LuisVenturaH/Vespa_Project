@@ -197,6 +197,8 @@ input::placeholder {
     border: none;
     border-radius: 16px;
     text-align: center;
+    color: var(--blanco);
+    font-size: 1.5rem;
 }
 
 .testimonio-imagen {
