@@ -22,6 +22,16 @@
     transform: all 0.3;
 }
 
+.btn-sin-bordes{
+    border: none; 
+    background: none; 
+    padding: 0; 
+    cursor: pointer; 
+    color: var(--blanco); 
+    font-weight: 600;
+    font-size: 2rem;
+}
+
 .jumbotron button { /*Estilos para cambiar display de botones a BLOCK y que ocupen todo el contenedor*/
     display: block;
     font-size: 1rem;
