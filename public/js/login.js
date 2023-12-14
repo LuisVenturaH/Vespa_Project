@@ -37,35 +37,67 @@ function registroNuevoUsuario() {
 
 // Funcion para login (PROBADO Y FUNCIONA CORRECTAMENTE)
 function login() {
-    const usuario = document.getElementById("usuario").value;
-    const contrasena = document.getElementById("contrasena").value;
+    const email = document.getElementById("email_login").value;
+    const password = document.getElementById("password_login").value;
+    console.log(email, password);
+     
+    fetch(`${host}/login`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+   
+    body: JSON.stringify({email: email, password: password})
+    }).then(function(response){
+        return response.json()
+    }).then(function(json){
+        console.log(json);
 
-    if (usuario === "" || contrasena === "") {
-        alert("No has introducido usuario o contraseña correctamente. Vuelve a intentarlo");
-    } else {
-        alert("Registro correcto");
-        localStorage.setItem("Usuario", usuario);
+        alert(json.message);
 
-        // Redirecciona después de guardar en localStorage
-        window.location.href = "http://localhost:8000/html/index.html";
-
-        // Hacer la solicitud fetch para autenticación
-        fetch(`${host}/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: usuario,
-                password: contrasena
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error("Error en la solicitud:", error);
-        });
-    }
+        if (json.message === "Login correcto") {
+            localStorage.setItem("Usuario", email);
+            window.location.href = "/index.html"; // Con esto logramos que cuando un usuario se loguee se redireccione a la página de inicio
+        }
+    }).catch(function(error){
+        console.log(error);
+    })
 }
+
+// function login() {
+//     const usuario = document.getElementById("usuario").value;
+//     const contrasena = document.getElementById("contrasena").value;
+
+//     if (usuario === "" || contrasena === "") {
+//         alert("No has introducido usuario o contraseña correctamente. Vuelve a intentarlo");
+//     } else {
+//         alert("Registro correcto");
+//         localStorage.setItem("Usuario", usuario);
+
+//         // Redirecciona después de guardar en localStorage
+//         window.location.href = "http://localhost:8000";
+
+//         // Hacer la solicitud fetch para autenticación
+//         fetch(`${host}/login`, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify({
+//                 email: usuario,
+//                 password: contrasena
+//             })
+//         })
+//         .then(response => response.json())
+//         .then(data => {
+//             console.log(data);
+//         })
+//         .catch(error => {
+//             console.error("Error en la solicitud:", error);
+//         });
+//     }
+// }
+
+
+// TENGO QUE CRAR FUNCUION LOG OUT CON LOCALSTORAGE.CLEAR
+// localStorage.clear()

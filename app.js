@@ -53,30 +53,33 @@ app.get(`/carrusel`, function(request, response){
 app.get(`/clientes`, function(request, response){
     connection.query("SELECT * FROM clientes", function(error, result, fields){
     handleSQLError(response, error, result, function(result){
-    let usuarios = [];
+    let clientes = [];
                 
     for (let i = 0; i < result.length; i++){
-    usuarios[i] = result[i];     
+    clientes[i] = result[i];     
 }
-    response.send(usuarios);
+    response.send(clientes);
     })
  })
 })
 
-app.post('/login', function(request, response){
+app.post('/login', function(request, response) {
     const email = request.body.email;
     const password = request.body.password;
-    connection.query(`SELECT * FROM clientes WHERE email = "${email}" and password = "${password}"`, function(error, result, fields){
-        handleSQLError(response, error, result, function(result){
-            if(result.length == 0) {
-                response.send({message: "Email o password incorrectos"});
-            }
-            else {
-                response.send({message: "Login correcto"});
-            }
-        })
+
+    connection.query(`select * from clientes where email = "${email}" and password = "${password}"`, function(error, result, fields) {
+    handleSQLError(response, error, result, function(result){
+
+        if (result.length == 0) {
+            response.send({message: "Email o password incorrecto"})
+        }  
+        else {
+            response.send({message: "Login correcto"});
+        }
     })
+ }) 
 })
+
 
                     //==========>>>> REGISTRO NUEVOS CLIENTES
 app.put('/nuevo_registro', function(request, response){

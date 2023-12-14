@@ -1,5 +1,9 @@
 const host = "http://localhost:8000";
 
+// Función para agregar producto al carrito
+
+
+
 // Funcion para pintar listado de productos del carrito en carritos.html (PROBADO Y FUNCIONA CORRECTAMENTE)
 
 window.addEventListener("load", function(event) {

@@ -24,8 +24,7 @@ fetch(`${host}/tarjetas`)
  let numero_tarjeta = `${json[i].numero_tarjeta}` ;
 
     localStorage.setItem("tarjeta", numero_tarjeta);
-
-    }
+}
     tarjetaContainerDiv += '</div>'
 })
 .catch(function(error){
