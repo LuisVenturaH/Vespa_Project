@@ -336,12 +336,28 @@ if (result.length == 0 ){
 else{
     response.send(result[0]);   
 }
-
 })
 })
 })
 
 //==========>>>> AGREGAR UN PRODUCTO AL CARRITO. METODO POST. RUTA CARRITO/AGREGAR. FUNCION agregarAlCarrito
+app.post(`/agregar_carrito/`, function(request, response){
+    const cliente_id = request.body.id;
+   
+    connection.query(`INSERT into compras WHERE id = "${id_producto}"`, function(error, result, fields){
+    handleSQLError(response, error, result, function(error){
+        if(result.length === 0){
+            response.send({});
+        }
+        else{
+            response.send(result[0]);
+            console.log(result[0].id)
+        }
+    })
+    })
+})
+
+
 
 //==========>>>> VER CONTENIDO DEL CARRITO. METODO GET. RUTA CARRITO/. FUNCION verCarrito
 

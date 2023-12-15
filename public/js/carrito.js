@@ -84,8 +84,6 @@ window.addEventListener("load", function(event){
         });
 });
 
-
-
 // Función para traer el total de la compra (PROBADO Y FUNCIONA CORRECTAMENTE)
 
 window.addEventListener("load", function(event) {
