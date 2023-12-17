@@ -3,12 +3,20 @@ const host = 'http://localhost:8000';
 // TRAE LISTADO DE TARJETAS DEL DB PARA INSENTARLO EN EL DOM
 
 window.addEventListener("load", function(event){
-fetch(`${host}/tarjetas`)
+const cliente_id = this.localStorage.getItem("usuario")
+fetch(`${host}/tarjetas/${cliente_id}`)
+console.log(first)
 
 .then(function(response){
      return response.json();
 })
 .then(function(json){
+    const nombre_guardado = localStorage.getItem('nombre');
+    if(nombre_guardado){
+        const nombre_cliente = document.getElementById("nombre_local_storage")
+        nombre_cliente.innerHTML = `<div id="nombre_local">Cliente: ${nombre_guardado} </div>`
+    }
+
     const tarjetaContainerDiv = document.getElementById("tarjetas_registradas");
     tarjetaContainerDiv.innerHTML = '<div>';
     for (let i = 0; i < json.length; i++) {

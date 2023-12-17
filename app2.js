@@ -48,17 +48,17 @@ app.get(`/carrusel`, function(request, response){
 
 
 //==========>>>> ENDOPOINT REGISTRO USUARIO
-                //==========>>>> LOGIN
+                //==========>>>> LOGUEARSE Y OBTENER CLIENTE_ID EN LOCALSTORAGE
 
 app.post('/login', function(request, response) {
     const email = request.body.email;
     const password = request.body.password;
 
-    connection.query('SELECT id, nombre FROM clientes WHERE email = ? AND password = ?', [email, password], function(error, result, fields) {
+    connection.query('SELECT id FROM clientes WHERE email = ? AND password = ?', [email, password], function(error, result, fields) {
     handleSQLError(response, error, result, function(result){
 
         if (result.length > 0 && result[0].id) {
-            response.json({message: "Login correcto", cliente_id: result[0].id, nombre: result[0].nombre}); 
+            response.json({message: "Login correcto", cliente_id: result[0].id}); 
         }  
         else {
             response.status(400).json({message: "Email o password incorrecto"});
@@ -67,21 +67,15 @@ app.post('/login', function(request, response) {
  }) 
 })
 
-
                     //==========>>>> REGISTRO NUEVOS CLIENTES
-app.put('/nuevo_registro', function(request, response){
+app.post('/nuevo_registro', function(request, response){
     const nombre = request.body.nombre;
     const apellidos = request.body.apellidos;
     const email = request.body.email;
     const password = request.body.password;
-    const calle = "";
-    const numero = "";
-    const provincia = "";
-    const codigo_postal = "";
-    const pais = "";
-    const telefono = "";
-    connection.query(`INSERT INTO clientes (nombre, apellidos, email, password, calle, numero, provincia, codigo_postal, pais, telefono) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
-    [nombre, apellidos, email, password, calle, numero, provincia, codigo_postal, pais, telefono], function(error, result, fields){
+ 
+    connection.query(`INSERT INTO clientes (nombre, apellidos, email, password) VALUES (?, ?, ?, ?)`, 
+    [nombre, apellidos, email, password], function(error, result, fields){
         if (error){
             console.log("Error al insertar usuario", error);
             response.status(500).send({message: "Error al insertar usuario"});
@@ -92,30 +86,6 @@ app.put('/nuevo_registro', function(request, response){
         }
     })
 })
-
-//=========>>>> ENDPOINT CARRITO
-                //==========>>>>OBTENER NUMERO DEL CARRITO SEGÚN CANTIDAD DE PRODUCTOS DESDE DB
-app.get('/cantidad_productos/:id', function(request, response){
-    const cantidad_productos = request.params.id;
-    connection.query(`SELECT cp.compra_id, c.id = "${cantidad_productos}", COUNT(cp.producto_id) AS total_productos
-    FROM compra_productos cp
-    JOIN clientes c ON cp.cliente_id = c.id
-    WHERE cp.compra_id = 1
-    GROUP BY cp.compra_id, c.id; `,
-        function(error, result, fields){
-            handleSQLError(response, error, result, function(result){
-                if (result.length > 0) {
-                    let total_productos = parseInt(result[0].total_productos);                    
-                    response.send({ total: total_productos });
-                   } else {
-                    response.send({ total: 0 });
-                    console.log("No hay resultados para la compra especificada");
-                }
-            });
-        }
-    );
-});
-
 
 //==========>>>> ENDOPOINT PRODUCTOS
 
@@ -221,7 +191,6 @@ app.get('/compratotal', function(request, response){
         }
     );
 });
-
 
 
 //==========>>>> ENDOPOINT TARJETAS DE CREDITO

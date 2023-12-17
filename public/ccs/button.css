@@ -10,6 +10,22 @@
     transform: all 0.3;
 }
 
+.input {
+    color: var(--secundario);
+    background-color: var(--blanco);
+    border: 1px solid var(--secundario);
+    border-radius: 8px;
+    padding: 12px 36px;
+    text-decoration: none;
+    display: inline-block;
+    transform: all 0.3;
+}
+
+.btn:hover {
+    /* border-radius: 16px; */
+    transform: scale(1.05);
+}
+
 .btn-secundario {
     color: var(--black);
     background-color: var(--gris);
@@ -20,6 +36,9 @@
     text-decoration: none;
     display: inline-block;
     transform: all 0.3;
+}
+.btn-secundario:hover{
+    border-radius: 16px;
 }
 
 .btn-sin-bordes{

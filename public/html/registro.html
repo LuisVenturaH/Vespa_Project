@@ -36,8 +36,8 @@
                 padding: 16px;
                 margin: 16px;
                 gap: 16px;   
-                width: 100%;
                 margin: auto;
+                width: 100%;
             }
             main h2{
                 font-size: 2rem;
@@ -98,18 +98,17 @@
 
     <main>
         <div class="contenedor-login">
-            <div class="contenedor-login-1">
-                <!-- <div> -->
-                    <h2>Iniciar sesión</h2>
-                    <h3>Ingrese email y contraseña para acceder a la cuenta</h3>
-                <!-- </div> -->
-                
-                <!-- <div> -->
-                    <input type="text" id="email" placeholder="Email" class="input">
-                    <input type="password" id="password" placeholder="Contraseña"  class="input">
-                    <button type="button" onclick="login()" class="btn">Inicia sesión</button>
-                <!-- </div> -->
-            </div> 
+            <div class="contenedor-login-1"> <!--Abre contenedor nuevo registro-->   
+                    <!-- <div> -->
+                        <h2>Regístrate</h2>
+                        <h3>Crea una cuenta para conseguir tu primer descuento</h3>
+                        <input type="text" id="nombre" placeholder="Nombre" class="input">
+                        <input type="text" id="apellidos" placeholder="Apellidos" class="input">
+                        <input type="email" id="nuevo_email" placeholder="Email" class="input">
+                        <input type="password" id="nuevo_password" placeholder="Contraseña"  class="input">
+                        <button type="button" onclick="registroNuevoUsuario()" class="btn">Regístrate</button>
+                    <!-- </div>   -->
+            </div> <!--Cierra contenedor principal-->
         </div>
     </main>
 

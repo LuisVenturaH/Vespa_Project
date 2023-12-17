@@ -22,10 +22,12 @@
       main{
         width: 80%;
     }
+  
    </style>
   </head>
 <body>   
-      <div class="jumbotron">   <!--Abre contenedor imagen fondo cabecera-->
+        <div class="jumbotron">   <!--Abre contenedor imagen fondo cabecera-->
+          <div id="nombre_local_storage" class="nombre_storage"></div>
         <header>
               <div class="wrap">
                       <!-- Encabezado buscador -->
@@ -36,7 +38,7 @@
         
                               <!-- Botón carrito -->
                   <button type="button" class="btn"><a href="http://localhost:8000/html/carrito.html" class="carrito" id="carrito">
-                        <i class="bi bi-cart-fill"></i>Carrito<span>3</span></a></button>    
+                        <i class="bi bi-cart-fill"></i>Carrito<span id="cantidad_producto_carrito"></span></a></button>    
                         <!-- Encabezado logo -->
                         <a href="http://localhost:8000/index.html">        
                           <img src="/img/logo_vespa.png" class="logo" alt="Logo Oficial Vespa"/></a>
@@ -59,6 +61,7 @@
                     </div>
                 </nav>
             </div>
+            
       </div>  <!--Cierra contenedor imagen fondo cabecera-->
 
     <main>
@@ -434,5 +437,6 @@
 </footer>
 
 <script src="/js/index.js"></script>
+
 </body>
 </html> 

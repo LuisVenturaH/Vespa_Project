@@ -1,6 +1,18 @@
 const host = "http://localhost:8000";
 
-// Función para agregar producto al carrito
+// Función para agregar el número de la cantidad de productos al carrito
+window.addEventListener("local", function(event){
+    const cliente_id = localStorage.getItem("cliente_id")
+    fetch(`${host}/cantidad_productos/${cliente_id}`)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(json){
+            const cantidad_productos_carrito = document.getElementById('cantidad_producto_carrito');
+            cantidad_productos_carrito.innerHTML = `<span>${json.total_productos}</span>`
+        })
+})
+
 
 
 
@@ -12,6 +24,13 @@ window.addEventListener("load", function(event) {
             return response.json();
         })
         .then(function(json) {
+                 // NOMBRE CLIENTE DE LOCALSTORAGE
+        const nombre_guardado = localStorage.getItem('nombre');
+        if(nombre_guardado){
+            const nombre_cliente = document.getElementById("nombre_local_storage")
+            nombre_cliente.innerHTML = `<div id="nombre_local">Cliente: ${nombre_guardado} </div>`
+        }
+
             const productosCarrito = document.getElementById("productosCarrito");
             if (json.length === 0) {
                 alert("No hay ningún artículo en el carrito de compras. Seleccione sus productos");

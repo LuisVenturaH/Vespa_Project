@@ -5,6 +5,13 @@ window.addEventListener("load", function(event){
     .then(function(response){
         return response.json();
     }).then(function(json){
+        // NOMBRE CLIENTE DE LOCALSTORAGE
+        const nombre_guardado = localStorage.getItem('nombre');
+        if(nombre_guardado){
+            const nombre_cliente = document.getElementById("nombre_local_storage")
+            nombre_cliente.innerHTML = `<div id="nombre_local">Hola ${nombre_guardado} </div>`
+        }
+     
         // PRODUCTO 1
         const imagenProducto1 = document.getElementById("imagen_producto1");
         imagenProducto1.innerHTML = `<img src="/img/${json[0].nombre}.jpg" class="image" alt="Vespa Primavera"/>`

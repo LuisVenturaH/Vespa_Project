@@ -136,10 +136,15 @@ small, .text_small {font-size: 0.8rem;}
 /* Cambia el color del marcador de posición en campos de entrada (placeholder) */
 
 input::placeholder {
-    color: var(--verde_italia);
+    color: var(--secundario);
     text-align: center;
     font-weight: 400; 
 }
+
+input:focus::placeholder {
+    color: var(--primario);
+    font-style: 400; 
+  }
 
 .bold {
     font-weight: 800;
@@ -207,6 +212,22 @@ input::placeholder {
     background-position: 50% 50%;
     padding: 112px 0 80px 0;
 }
+    
+/* Estilos para nombre del local storage */
+#nombre_local{
+    display: flex;
+    border: 1px solid var(--blanco);
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    width: 10%;
+}
+  #nombre_local_storage{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 40px;
+  }
 
   
   
