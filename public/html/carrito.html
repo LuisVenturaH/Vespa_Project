@@ -59,8 +59,7 @@
                         </div>
             
                         <!-- Botón carrito -->
-                        <button type="button"  class="btn" ><a href="http://localhost:8000/html/carrito.html"id="carrito">
-                            <i class="bi bi-cart-fill"></i>Carrito<span>3</span></a></button>    
+                        <span id="articulos_carrito"></span>   <!-- Viene de total artículos carrito de base de datos -->
                     </div>
                 </header>
                 <div  class="menu-header">
@@ -87,9 +86,9 @@
             <div class="micarrito">
                 <h3 class="bold m-color">Mi Carrito</h3>
                 <i class="bi bi-box-arrow-right m-color h3"></i>
-                <input type="text" placeholder="Formas de Pago" class="btn">
+                <button id="Login" class="btn-secundario"><a href="http://localhost:8000/html/formas_pago.html">formas de pago</a></button>
                 <i class="bi bi-box-arrow-right m-color h3"></i>
-                <input type="text" placeholder="Finalizar Compra" class="btn">
+                <button id="Login" class="btn-secundario"><a href="http://localhost:8000/html/finalizar_compra.html">Finalizar compra</a></button>
             </div>
 
             <div class="cart-contenedor-principal"> <!--Abre contenedor principal Mi carrito-->
@@ -179,7 +178,7 @@
             </div> <!--Cierre contenedor uno pie de página-->
         </div> <!--Cierre contenedor general footer-->
         </footer>
-
+        <script src="/js/general.js"></script>
         <script src="/js/carrito.js"></script>
     </body>
 </html>

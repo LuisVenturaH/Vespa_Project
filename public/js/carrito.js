@@ -1,30 +1,15 @@
-const host = "http://localhost:8000";
-
-// Función para agregar el número de la cantidad de productos al carrito
-window.addEventListener("local", function(event){
-    const cliente_id = localStorage.getItem("cliente_id")
-    fetch(`${host}/cantidad_productos/${cliente_id}`)
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(json){
-            const cantidad_productos_carrito = document.getElementById('cantidad_producto_carrito');
-            cantidad_productos_carrito.innerHTML = `<span>${json.total_productos}</span>`
-        })
-})
-
-
-
+// const host = "http://localhost:8000";
 
 // Funcion para pintar listado de productos del carrito en carritos.html (PROBADO Y FUNCIONA CORRECTAMENTE)
 
 window.addEventListener("load", function(event) {
-    fetch(`${host}/compras/1`)
+    const cliente_id = localStorage.getItem('cliente_id')
+    fetch(`${host}/compras/${cliente_id}`)
         .then(function(response) {
             return response.json();
         })
         .then(function(json) {
-                 // NOMBRE CLIENTE DE LOCALSTORAGE
+                 // TRAE NOMBRE CLIENTE DE LOCALSTORAGE
         const nombre_guardado = localStorage.getItem('nombre');
         if(nombre_guardado){
             const nombre_cliente = document.getElementById("nombre_local_storage")
@@ -57,56 +42,16 @@ window.addEventListener("load", function(event) {
             }
         })
         .catch(function(error) {
-            console.log(error);
+            console.error(error);
         });
 });
 
-
-// Funcion para pintar listado de productos agregados al carrito en finalizarcompra.html.  (PROBADO Y FUNCIONA CORRECTAMENTE)
-
-window.addEventListener("load", function(event){
-    fetch(`${host}/compras/1`)
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(json){
-            const carritoFinalizarCompra = document.getElementById("carritoFinalizarCompra");
-
-            // Verificar si el carrito está vacío
-            if (json.length === 0) {
-                carritoFinalizarCompra.innerHTML = '<p>No hay ningún artículo en el carrito de compras. Seleccione sus productos.</p>';
-            } else {
-                // Mostrar los productos en el carrito
-                json.forEach(item => {
-                    carritoFinalizarCompra.innerHTML += `
-                        <div class="cart-contenedor-descripcion"> <!--Abre contenedor-->
-                            <div> <!--Imagen producto-->
-                                <img src="/img/${item.nombre}.jpg" alt="Vespa Electrica" />
-                            </div>
-                                <p><span class="bold">${item.nombre}</span></p>
-                                <div class="h4 cart-contenedor-descripcion">${item.precio}<i class="bi bi-currency-euro m-color"></i></div>
-                            
-                                <div class="cart-contenedor-interno">  
-                                    <i class="bi bi-dash-square m-color"></i>
-                                    <p>1</p>
-                                    <i class="bi bi-plus-square m-color"></i>
-                                    <i class="bi bi-trash3-fill"></i>    
-                                </div>
-                           
-                        </div> <!--Cierra contenedor-->
-                    `;
-                });
-            }
-        })
-        .catch(function(error){
-            console.error("Error al cargar el carrito de compras:", error);
-        });
-});
 
 // Función para traer el total de la compra (PROBADO Y FUNCIONA CORRECTAMENTE)
 
 window.addEventListener("load", function(event) {
-    fetch(`${host}/compratotal`)
+    const cliente_id = localStorage.getItem('cliente_id')
+    fetch(`${host}/compratotal/${cliente_id}`)
         .then(function(response) {
             return response.json();
         })
@@ -124,48 +69,48 @@ window.addEventListener("load", function(event) {
         });
 });
 
-// Funcion para llevar la  información del usuario a la pasarela de pago    
-window.addEventListener("load", function (event) {
-    // Obtener información del carrito
-    fetch(`${host}/compras/1`)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (json) {
-            const carritoFinalizarCompra = document.getElementById("carritoFinalizarCompra");
+// // Funcion para llevar la  información del usuario a la pasarela de pago    
+// window.addEventListener("load", function (event) {
+//     // Obtener información del carrito
+//     fetch(`${host}/compras/1`)
+//         .then(function (response) {
+//             return response.json();
+//         })
+//         .then(function (json) {
+//             const carritoFinalizarCompra = document.getElementById("carritoFinalizarCompra");
 
-            // Verificar si el carrito está vacío
-            if (json.length === 0) {
-                carritoFinalizarCompra.innerHTML = '<p>No hay ningún artículo en el carrito de compras. Seleccione sus productos.</p>';
-            } else {
-                // Mostrar los productos en el carrito
-                json.forEach(item => {
-                    carritoFinalizarCompra.innerHTML += `
-                        <!-- Tu código existente para mostrar productos -->
-                    `;
-                });
+//             // Verificar si el carrito está vacío
+//             if (json.length === 0) {
+//                 carritoFinalizarCompra.innerHTML = '<p>No hay ningún artículo en el carrito de compras. Seleccione sus productos.</p>';
+//             } else {
+//                 // Mostrar los productos en el carrito
+//                 json.forEach(item => {
+//                     carritoFinalizarCompra.innerHTML += `
+//                         <!-- Tu código existente para mostrar productos -->
+//                     `;
+//                 });
 
-                // Obtener información del usuario
-                fetch(`${host}/clientes`)
-                    .then(function (response) {
-                        return response.json();
-                    })
-                    .then(function (usuario) {
-                        // Ahora `usuario` contiene la información del usuario
-                        console.log("Información del Usuario:", usuario);
+//                 // Obtener información del usuario
+//                 fetch(`${host}/clientes`)
+//                     .then(function (response) {
+//                         return response.json();
+//                     })
+//                     .then(function (usuario) {
+//                         // Ahora `usuario` contiene la información del usuario
+//                         console.log("Información del Usuario:", usuario);
 
-                        // Aquí puedes hacer algo con la información del usuario,
-                        // por ejemplo, mostrarla en algún lugar en tu página.
-                    })
-                    .catch(function (error) {
-                        console.error("Error al obtener la información del usuario:", error);
-                    });
-            }
-        })
-        .catch(function (error) {
-            console.error("Error al cargar el carrito de compras:", error);
-        });
-});
+//                         // Aquí puedes hacer algo con la información del usuario,
+//                         // por ejemplo, mostrarla en algún lugar en tu página.
+//                     })
+//                     .catch(function (error) {
+//                         console.error("Error al obtener la información del usuario:", error);
+//                     });
+//             }
+//         })
+//         .catch(function (error) {
+//             console.error("Error al cargar el carrito de compras:", error);
+//         });
+// });
 
 function agregarDatosCliente(){
     const nombre = document.getElementById("nombre").value;
@@ -209,3 +154,47 @@ function agregarDatosCliente(){
         });
     }
 }
+
+
+
+// Funcion para pintar listado de productos agregados al carrito en finalizarcompra.html.  (PROBADO Y FUNCIONA CORRECTAMENTE)
+
+window.addEventListener("load", function(event){
+    const compra_id = localStorage.getItem("cliente_id")
+    fetch(`${host}/compras/${compra_id}`)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(json){
+            const carritoFinalizarCompra = document.getElementById("carritoFinalizarCompra");
+
+            // Verificar si el carrito está vacío
+            if (json.length === 0) {
+                carritoFinalizarCompra.innerHTML = '<p>No hay ningún artículo en el carrito de compras. Seleccione sus productos.</p>';
+            } else {
+                // Mostrar los productos en el carrito
+                json.forEach(item => {
+                    carritoFinalizarCompra.innerHTML += `
+                        <div class="cart-contenedor-descripcion"> <!--Abre contenedor-->
+                            <div> <!--Imagen producto-->
+                                <img src="/img/${item.nombre}.jpg" alt="Vespa Electrica" />
+                            </div>
+                                <p><span class="bold">${item.nombre}</span></p>
+                                <div class="h4 cart-contenedor-descripcion">${item.precio}<i class="bi bi-currency-euro m-color"></i></div>
+                            
+                                <div class="cart-contenedor-interno">  
+                                    <i class="bi bi-dash-square m-color"></i>
+                                    <p>1</p>
+                                    <i class="bi bi-plus-square m-color"></i>
+                                    <i class="bi bi-trash3-fill"></i>    
+                                </div>
+                           
+                        </div> <!--Cierra contenedor-->
+                    `;
+                });
+            }
+        })
+        .catch(function(error){
+            console.error("Error al cargar el carrito de compras:", error);
+        });
+});

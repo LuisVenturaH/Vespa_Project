@@ -1,58 +1,51 @@
-const host = 'http://localhost:8000';
+// const host = 'http://localhost:8000';
 
 // TRAE LISTADO DE TARJETAS DEL DB PARA INSENTARLO EN EL DOM
 
 window.addEventListener("load", function(event){
-const cliente_id = this.localStorage.getItem("usuario")
-fetch(`${host}/tarjetas/${cliente_id}`)
-console.log(first)
+    const cliente_id = localStorage.getItem('cliente_id');
+    fetch(`${host}/tarjetas/${cliente_id}`)
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(json){
+        // Trae nombre cliente del localStorage
+        const nombre_guardado = localStorage.getItem("nombre");
+        if(nombre_guardado){
+            const nombre_cliente = document.getElementById('nombre_local_storage');
+            nombre_cliente.innerHTML =  `<div id="nombre_local">Cliente: ${nombre_guardado} </div>`
+        }
 
-.then(function(response){
-     return response.json();
-})
-.then(function(json){
-    const nombre_guardado = localStorage.getItem('nombre');
-    if(nombre_guardado){
-        const nombre_cliente = document.getElementById("nombre_local_storage")
-        nombre_cliente.innerHTML = `<div id="nombre_local">Cliente: ${nombre_guardado} </div>`
-    }
-
-    const tarjetaContainerDiv = document.getElementById("tarjetas_registradas");
-    tarjetaContainerDiv.innerHTML = '<div>';
-    for (let i = 0; i < json.length; i++) {
-        if (json[i] === 0) {
-    alert("Debes seleccionar una tarjeta o agregar una");
- } else {
-    tarjetaContainerDiv.innerHTML += `
-   
-    <button type="button" class="btn selecciona-tarjeta"><a href="#" id="${json[i].id}">${json[i].numero_tarjeta}</a>
-   `  
- }
- // Para guardar el numero de la tarjeta en la memoria de la aplicación
- let numero_tarjeta = `${json[i].numero_tarjeta}` ;
-
-    localStorage.setItem("tarjeta", numero_tarjeta);
-}
-    tarjetaContainerDiv += '</div>'
-})
-.catch(function(error){
-    console.log(error);
-})
+        const tarjetas_cliente = document.getElementById('tarjetas_registradas');
+        if(json.length === 0){
+            alert('No tienes tarjetas registradas');
+        }
+        else{
+            for (let i = 0; i < json.length; i++){
+                tarjetas_cliente.innerHTML += `
+                <button type="button" class="btn selecciona-tarjeta"><a href="#">${json[i].numero_tarjeta}</a>
+                `;
+            }
+        }
+    })
+    .catch(function(error){
+        console.error(error)
+    })
 })
 
 // Funcion para ocultar los números de la tarjeta y mostrar solo los últimos 4
-function ocultarNumero (numero_tarjeta){
-    let nuevaTarjeta = "";
+function ocultarNumero (tarjeta){
+    let numero_tarjeta = "";
 
-    for (let i = 0; i < numero_tarjeta.length; i++) {
+    for (let i = 0; i < tarjeta.length; i++) {
         if (i < 12) {
-            nuevaTarjeta += "*";
+            numero_tarjeta += "*";
         }
         else {
-            nuevaTarjeta += numero_tarjeta[i];
+            numero_tarjeta += tarjeta[i];
         }
     }
-    return nuevaTarjeta;
+    return tarjeta;
 }
 
 function registroNuevaTarjeta() {

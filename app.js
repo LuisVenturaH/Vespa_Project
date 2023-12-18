@@ -95,13 +95,14 @@ app.put('/nuevo_registro', function(request, response){
 
 //=========>>>> ENDPOINT CARRITO
                 //==========>>>>OBTENER NUMERO DEL CARRITO SEGÚN CANTIDAD DE PRODUCTOS DESDE DB
-app.get('/cantidad_productos/:id', function(request, response){
-    const cantidad_productos = request.params.id;
-    connection.query(`SELECT cp.compra_id, c.id = "${cantidad_productos}", COUNT(cp.producto_id) AS total_productos
+app.get('/total_articulos/:cliente_id', function(request, response){
+    const cliente_id = request.params.cliente_id;
+
+    connection.query(`SELECT cp.compra_id,  COUNT(cp.producto_id) AS total_productos
     FROM compra_productos cp
     JOIN clientes c ON cp.cliente_id = c.id
-    WHERE cp.compra_id = 1
-    GROUP BY cp.compra_id, c.id; `,
+    WHERE cp.cliente_id = "${cliente_id}"
+    GROUP BY cp.compra_id, c.id `,
         function(error, result, fields){
             handleSQLError(response, error, result, function(result){
                 if (result.length > 0) {
@@ -119,7 +120,7 @@ app.get('/cantidad_productos/:id', function(request, response){
 
 //==========>>>> ENDOPOINT PRODUCTOS
 
-                //==========>>>> OBTENER TODOS LOS PRODUCTOS
+                //==========>>>> OBTENER TODOS LOS PRODUCTOS (SIRVE PARA PINTARLOS EN INDEX)
 app.get('/productos', function(request, response){
     connection.query("SELECT * FROM productos", function(error, result, fields){
         handleSQLError(response, error, result, function(result){
@@ -152,47 +153,12 @@ app.get('/productos/:id', function(request, response){
     });
 });
 
-                //==========>>>> OBTENER UN PRODUCTO POR SU NOMBRE
-app.get('/nombreproducto/:id', function(request, response){
-    const nombreProducto = request.params.id;
-
-    connection.query(`SELECT nombre FROM productos WHERE id = "${nombreProducto}"`, function(error, result, fields){
-        handleSQLError(response, error, result, function(result){
-            if (result.length == 0) {
-                response.send({});
-            }
-            else {
-                response.send(result[0]);
-            }
-        })
-    })
-})
-
-                //==========>>>> OBTENER PRECIO DE UN PRODUCTO
-app.get('/precioproducto/:id', function(request, response){
-    const precioProducto = request.params.id;
-    
-    connection.query(`SELECT precio FROM productos WHERE id = "${precioProducto}"`, function(error, result, fields){
-        handleSQLError(response, error, result, function(result){
-            if (result.length == 0) {
-                response.send({});
-            }
-            else {
-                response.send(result[0]);
-    }
-        })
-    })
-
-})
-
-
-
 //==========>>>> ENDOPOINT COMPRA
                 //==========>>>>OBTENER COMPRA DESDE DB
 app.get('/compras/:id', function(request, response) {
 const comprasId = request.params.id;
 
-connection.query('SELECT productos.id, productos.nombre, productos.precio, productos.descripcion_corta, productos.especificaciones, compra_productos.compra_id FROM productos JOIN compra_productos ON productos.id = compra_productos.producto_id WHERE compra_productos.compra_id = ?', 
+connection.query('SELECT productos.id, productos.nombre, productos.precio, productos.descripcion_corta, productos.especificaciones, compra_productos.compra_id FROM productos JOIN compra_productos ON productos.id = compra_productos.producto_id WHERE compra_productos.cliente_id = ?', 
 [comprasId], function(error, result, fields) {
  handleSQLError(response, error, result, function(result) {
     let carrito_compra = [];
@@ -204,10 +170,11 @@ connection.query('SELECT productos.id, productos.nombre, productos.precio, produ
  });
 });
              
-
                 //==========>>>>OBTENER RESUMEN TOTAL COMPRA DESDE DB
-app.get('/compratotal', function(request, response){
-    connection.query(`SELECT compra_id, SUM(total) AS total_precio FROM compra_productos WHERE compra_id = 1 GROUP BY compra_id`,
+app.get('/compratotal/:cliente_id', function(request, response){
+
+    const cliente_id = request.params.cliente_id;
+    connection.query(`SELECT compra_id, SUM(total) AS total_precio FROM compra_productos WHERE cliente_id = ? GROUP BY compra_id`, [cliente_id],
         function(error, result, fields){
             handleSQLError(response, error, result, function(result){
                 if (result.length > 0) {
@@ -225,16 +192,12 @@ app.get('/compratotal', function(request, response){
 
 
 //==========>>>> ENDOPOINT TARJETAS DE CREDITO
-                                //==========>>>>OBTENER DATOS DE TARJETAS
 
-
-
-
-                                //==========>>>>OBTENER TARJETAS DE CRÉDITO POR ID
+                                //==========>>>>OBTENER TARJETAS POR ID
 app.get(`/tarjetas/:cliente_id`, function(request, response){
 const cliente_id = request.params.cliente_id;
 
-    connection.query(`SELECT * FROM metodo_pago WHERE cliente_id = ?`, [cliente_id], function(error, result, fields){
+    connection.query(`SELECT numero_tarjeta FROM metodo_pago WHERE cliente_id = ?`, [cliente_id], function(error, result, fields){
         handleSQLError(response, error, result, function(result){
          let tarjetas = [];
          for (let i = 0; i < result.length; i++){
@@ -263,6 +226,43 @@ app.post('/nueva_tarjeta', function(request, response){
         console.log('Tarjeta registrada correctamente');
     });
 });
+
+
+//==========>>>> AGREGAR UN PRODUCTO AL CARRITO SIN USUARIO LOGEADO
+app.patch(`/agregar_carrito/`, function(request, response){
+    const imagen = request.body.imagen_producto;
+    const nombre_producto = request.body.nombre_producto;
+    const precio = request.body.precio;
+   
+    connection.query(`INSERT into compras VALUE (?, ?, ?)`, [imagen, nombre_producto, precio], function(error, result, fields){
+    handleSQLError(response, error, result, function(error){
+        if(result.length === 0){
+            response.send({});
+        }
+        else{
+            response.send(result[0]);
+            console.log(result[0].id)
+        }
+    })
+    })
+})
+
+//==========>>>> AGREGAR UN PRODUCTO AL CARRITO CON USUARIO LOGEADO
+app.post(`/agregar_carrito/:cliente_id`, function(request, response){
+    const cliente_id = request.body.id;
+   
+    connection.query(`INSERT into compras WHERE id = ?`, cliente_id, function(error, result, fields){
+    handleSQLError(response, error, result, function(error){
+        if(result.length === 0){
+            response.send({});
+        }
+        else{
+            response.send(result[0]);
+            console.log(result[0].id)
+        }
+    })
+    })
+})
 
 
 //==========>>>> ENDOPOINT CLIENTES
@@ -330,7 +330,7 @@ app.put('/datos_cliente',function(request, response){
 });
 
 
-                    //==========>>>> AGREGAR CANTIDAD PRODUCTO
+                    //==========>>>> AGREGAR CANTIDAD PRODUCTO AL CARRITO
 app.get(`/cantidad_producto/:compra_id`, function(request, response){
     const compra_id = request.params.compra_id;
     const cantidad_producto = request.params.cantidad_producto;
@@ -355,22 +355,6 @@ else{
 })
 })
 
-//==========>>>> AGREGAR UN PRODUCTO AL CARRITO. METODO POST. RUTA CARRITO/AGREGAR. FUNCION agregarAlCarrito
-app.post(`/agregar_carrito/`, function(request, response){
-    const cliente_id = request.body.id;
-   
-    connection.query(`INSERT into compras WHERE id = "${id_producto}"`, function(error, result, fields){
-    handleSQLError(response, error, result, function(error){
-        if(result.length === 0){
-            response.send({});
-        }
-        else{
-            response.send(result[0]);
-            console.log(result[0].id)
-        }
-    })
-    })
-})
 
 
 

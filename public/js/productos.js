@@ -1,4 +1,4 @@
-const host = 'http://localhost:8000';
+// const host = 'http://localhost:8000';
 
 // ESTO SIRVE PARA QUE TOME EL ID DE PRODUCTO AUTOMATICAMENTE
 const params = new URLSearchParams(window.location.search);

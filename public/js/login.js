@@ -1,5 +1,5 @@
-const host = "http://localhost:8000";
-// Funcion para login y obetener cliente_id en localStorage (PROBADO Y FUNCIONA CORRECTAMENTE)
+// const host = "http://localhost:8000";
+// Funcion para login y obtener cliente_id en localStorage (PROBADO Y FUNCIONA CORRECTAMENTE)
 
 function login() {  
     const email = document.getElementById("email").value;

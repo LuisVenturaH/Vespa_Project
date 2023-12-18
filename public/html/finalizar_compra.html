@@ -135,8 +135,7 @@ main .h4{
                 </div>
       
                 <!-- Botón carrito -->
-                  <button type="button"  class="btn" ><a href="http://localhost:8000/html/carrito.html" id="carrito">
-                    <i class="bi bi-cart-fill"></i>Carrito<span>3</span></a></button>    
+                <span id="articulos_carrito"></span>   <!-- Viene de total artículos carrito de base de datos --> 
               </div>
           </header>
         <div  class="menu-header">
@@ -161,11 +160,11 @@ main .h4{
 
 <main class="wrap">
     <div class="micarrito">
-        <input type="text" placeholder="Mi Carrito" class="btn">
-        <i class="bi bi-box-arrow-right m-color h3"></i>
-        <input type="text" placeholder="Finalizar Compra" class="btn">
-        <i class="bi bi-box-arrow-right m-color h3"></i>
-        <h3 class="bold m-color" >Finalizar Compra</h3>     
+                <i class="bi bi-box-arrow-right m-color h3"></i>
+                <button id="Login" class="btn-secundario"><a href="http://localhost:8000/html/carrito.html">Carrito</a></button>
+                <i class="bi bi-box-arrow-right m-color h3"></i>
+                <button id="Login" class="btn-secundario"><a href="http://localhost:8000/html/formas_pago.html">Formas de pago</a></button>
+                <h3 class="bold m-color" >Finalizar Compra</h3>     
     </div>
 
     <div class="cart-contenedor-principal"> <!--ABRE CONTENEDOR GENERAL-->
@@ -272,7 +271,9 @@ main .h4{
     </div> <!--Cierre contenedor uno pie de página-->
 </div> <!--Cierre contenedor general footer-->
 </footer>
-<script src="/js/carrito.js"></script>
+<script src="/js/general.js"></script>
 <script src="/js/formas_pago.js"></script>
+<script src="/js/carrito.js"></script>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-const host = 'http://localhost:8000';
+// const host = 'http://localhost:8000';
 
 window.addEventListener("load", function(event){
     fetch(`${host}/productos`)

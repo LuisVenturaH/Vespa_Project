@@ -67,7 +67,7 @@ main #h1-index {
     display: flex;
     justify-content: space-around;
     align-items: baseline;
-    width: 80%;
+    width: 50%;
     margin: auto;
 }
 
