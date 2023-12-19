@@ -69,6 +69,31 @@ window.addEventListener("load", function(event) {
         });
 });
 
+
+
+// Función para agregar productos al carrito
+
+function agregarCarritoProducto1(){
+    const producto_id = document.getElementById('producto_id')
+    const cantidad_producto = document.getElementById('cantidad_producto')
+    const precio = document.getElementById('precio')
+    cliente_id = localStorage.getItem('cliente_id')
+
+    fetch(`${host}/agregar_carrito`, {
+        method: "PATCH",
+        headers: {
+                "Content-Type": "application/json"
+        },
+        body: JSON.stringify({producto_id})
+    }).then(function(response){
+        return response.json()
+    }).then(function(json){
+        console.log(json)
+    }).catch(function(error){
+        console.error(error)
+    })
+}
+
 // // Funcion para llevar la  información del usuario a la pasarela de pago    
 // window.addEventListener("load", function (event) {
 //     // Obtener información del carrito
@@ -112,6 +137,7 @@ window.addEventListener("load", function(event) {
 //         });
 // });
 
+// Función para agregar datos del cliente
 function agregarDatosCliente(){
     const nombre = document.getElementById("nombre").value;
     const apellidos = document.getElementById("apellidos").value;

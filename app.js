@@ -155,7 +155,7 @@ app.get('/productos/:id', function(request, response){
 
 //==========>>>> ENDOPOINT COMPRA
                 //==========>>>>OBTENER COMPRA DESDE DB
-app.get('/compras/:id', function(request, response) {
+app.get('/compras/:cliente_id', function(request, response) {
 const comprasId = request.params.id;
 
 connection.query('SELECT productos.id, productos.nombre, productos.precio, productos.descripcion_corta, productos.especificaciones, compra_productos.compra_id FROM productos JOIN compra_productos ON productos.id = compra_productos.producto_id WHERE compra_productos.cliente_id = ?', 
@@ -169,6 +169,45 @@ connection.query('SELECT productos.id, productos.nombre, productos.precio, produ
  });
  });
 });
+
+// =========>>>>> CREAR COMPRA
+app.post('/nueva_compra', function(request, response){
+    const cliente_id = request.body.cliente_id;
+    const pagado = request.body.pagado;
+
+    connection.query('INSERT INTO compras (cliente_id, pagado) VALUES (?, ?)',
+    [cliente_id, pagado], function(error, result, fields){
+        if(error){
+            console.error('Error al agregar producto a la compra', error);
+            response.status(500).send({message: 'Error al registrar nueva tarjeta'});
+            return;
+        }
+        console.log('Compra creada correctamente!!');
+    });
+});
+
+// =========>>>>> AÑADE COMPRA CON CLIENTE_ID A COMPRA_PRDUCTOS
+//==========>>>> AGREGAR UN PRODUCTO AL CARRITO
+app.patch(`/agregar_carrito/:cliente_id`, function(request, response){
+    const compra_id = request.body.compra_id
+    const producto_id = request.body.producto_id;
+    const cantidad_producto = request.body.cantidad_producto;
+    const precio = request.body.precio;
+    const cliente_id = request.body.cliente_id;
+   
+    connection.query(`INSERT into compra_productos VALUE (?, ?, ?, ?, ?)`, [compra_id, producto_id, cantidad_producto, precio, cliente_id], function(error, result, fields){
+    handleSQLError(response, error, result, function(error){
+        if(result.length === 0){
+            response.send({});
+        }
+        else{
+            response.send(result[0]);
+            console.log(result[0].id)
+        }
+    })
+    })
+})
+
              
                 //==========>>>>OBTENER RESUMEN TOTAL COMPRA DESDE DB
 app.get('/compratotal/:cliente_id', function(request, response){
@@ -228,41 +267,7 @@ app.post('/nueva_tarjeta', function(request, response){
 });
 
 
-//==========>>>> AGREGAR UN PRODUCTO AL CARRITO SIN USUARIO LOGEADO
-app.patch(`/agregar_carrito/`, function(request, response){
-    const imagen = request.body.imagen_producto;
-    const nombre_producto = request.body.nombre_producto;
-    const precio = request.body.precio;
-   
-    connection.query(`INSERT into compras VALUE (?, ?, ?)`, [imagen, nombre_producto, precio], function(error, result, fields){
-    handleSQLError(response, error, result, function(error){
-        if(result.length === 0){
-            response.send({});
-        }
-        else{
-            response.send(result[0]);
-            console.log(result[0].id)
-        }
-    })
-    })
-})
 
-//==========>>>> AGREGAR UN PRODUCTO AL CARRITO CON USUARIO LOGEADO
-app.post(`/agregar_carrito/:cliente_id`, function(request, response){
-    const cliente_id = request.body.id;
-   
-    connection.query(`INSERT into compras WHERE id = ?`, cliente_id, function(error, result, fields){
-    handleSQLError(response, error, result, function(error){
-        if(result.length === 0){
-            response.send({});
-        }
-        else{
-            response.send(result[0]);
-            console.log(result[0].id)
-        }
-    })
-    })
-})
 
 
 //==========>>>> ENDOPOINT CLIENTES

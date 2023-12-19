@@ -36,3 +36,43 @@ window.addEventListener("load", function(event){
         console.log(error);
     })
 })
+
+// function para crear nueva compra
+function nuevaCompra(){
+    const cliente_id = localStorage.getItem('cliente_id')
+    const pagado = 0
+    // compra_id = json[0].compra_id
+    // const producto_id = json[0].producto_id
+    // const cantidad_producto = json[0].cantidad_producto
+    // const precio = json[0].precio
+    
+
+    fetch(`${host}/nueva_compra`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({cliente_id, pagado})
+    }).then(function(response){
+        return response.json() // PUEDES HACER IF  PAGADO != 0, QUE AGREGUE LA COMPRA
+    }).then(function(json){
+        console.log(json)
+
+        localStorage.setItem('compra_id', json.id)
+        
+        const compra_id = localStorage.getItem("compra_id")
+            fetch(`${host}/agregar_carrito/${cliente_id}`,{
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({compra_id, producto_id, cantidad_producto, precio, cliente_id})
+            }).then(function(response){
+                return response.json()
+            }).then(function(json){
+                console.log(json)
+            }).catch(function(error){
+                console.error(error)
+            })
+    }) 
+} 
