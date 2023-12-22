@@ -46,7 +46,7 @@ window.addEventListener("load", function(event){
         const articulos_carrito = document.getElementById("articulos_carrito");
         const articulos = json.total || 0;
         articulos_carrito.innerHTML =`
-        <button type="button"  class="btn" ><a href="http://ec2-13-41-189-174.eu-west-2.compute.amazonaws.com:8000/html/carrito.html" id="carrito">
+        <button type="button"  class="btn" ><a href="${host}/html/carrito.html" id="carrito">
         <i class="bi bi-cart-fill"></i>Carrito<span>${articulos}</span></a></button> 
         `
     })
