@@ -6,7 +6,7 @@ app.use(express.static('public'));
 app.use(express.json());
 
 const connection = mysql.createConnection({
-    host: '127.0.0.1',
+    host: 'localhost',
     user: 'polo_digital',
     password: 'Lv++2023+',
     database: 'ecommerce'
