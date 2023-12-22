@@ -58,13 +58,19 @@ app.post('/login', function(request, response) {
     handleSQLError(response, error, result, function(result){
 
         if (result.length > 0 && result[0].id) {
-            response.json({message: "Login correcto", cliente_id: result[0].id, nombre: result[0].nombre}); 
+            response.json({message: "Login correcto", cliente_id: result[0].id, nombre: result[0].nombre});  
         }  
         else {
             response.status(400).json({message: "Email o password incorrecto"});
         }
     })
  }) 
+})
+
+                //==========>>>> LOGOUT
+app.post('/logout', function(request, resonse){
+
+    resonse.json({message: 'Desconectado correctamente!!'})
 })
 
 
@@ -171,7 +177,7 @@ connection.query('SELECT productos.id, productos.nombre, productos.precio, produ
 });
 
 // =========>>>>> CREAR COMPRA
-app.post('/nueva_compra', function(request, response){
+app.post('/nueva_compra/:cliente_id', function(request, response){
     const cliente_id = request.body.cliente_id;
     const pagado = request.body.pagado;
 
@@ -179,23 +185,25 @@ app.post('/nueva_compra', function(request, response){
     [cliente_id, pagado], function(error, result, fields){
         if(error){
             console.error('Error al agregar producto a la compra', error);
-            response.status(500).send({message: 'Error al registrar nueva tarjeta'});
+            response.status(500).send({message: 'Error al registrar compra'});
             return;
         }
         console.log('Compra creada correctamente!!');
+        response.send(result);
     });
 });
 
-// =========>>>>> AÑADE COMPRA CON CLIENTE_ID A COMPRA_PRDUCTOS
-//==========>>>> AGREGAR UN PRODUCTO AL CARRITO
-app.patch(`/agregar_carrito/:cliente_id`, function(request, response){
+// =========>>>>> AÑADE COMPRA CON CLIENTE_ID A COMPRA_PRODUCTOS
+//==========>>>> AGREGAR UN PRODUCTO AL CARRITO SI NO EXISTE COMPRA ID
+app.get(`/agregar_carrito/:cliente_id/`, function(request, response){
     const compra_id = request.body.compra_id
     const producto_id = request.body.producto_id;
     const cantidad_producto = request.body.cantidad_producto;
     const precio = request.body.precio;
+    const total = request.body.total;
     const cliente_id = request.body.cliente_id;
    
-    connection.query(`INSERT into compra_productos VALUE (?, ?, ?, ?, ?)`, [compra_id, producto_id, cantidad_producto, precio, cliente_id], function(error, result, fields){
+    connection.query(`INSERT into compra_productos VALUE (?, ?, ?, ?, ?)`, [compra_id, producto_id, cantidad_producto, precio, total, cliente_id], function(error, result, fields){
     handleSQLError(response, error, result, function(error){
         if(result.length === 0){
             response.send({});
@@ -207,6 +215,29 @@ app.patch(`/agregar_carrito/:cliente_id`, function(request, response){
     })
     })
 })
+
+//==========>>>> AGREGAR UN PRODUCTO AL CARRITO SI COMPRA_ID YA ESTA CREADA
+app.post('/agregar_carrito/:cliente_id/:compra_id', function(request, response) {
+    const compra_id = request.params.compra_id;
+    const cliente_id = request.params.cliente_id;
+    const producto_id = request.body.producto_id;
+    const cantidad_producto = request.body.cantidad_producto;
+    const precio = request.body.precio;
+    
+    connection.query(
+        'INSERT INTO compra_productos (compra_id, producto_id, cantidad_producto, precio, cliente_id) VALUES (?, ?, ?, ?, ?)',
+        [compra_id, producto_id, cantidad_producto, precio, cliente_id],
+        function(error, result, fields) {
+            handleSQLError(response, error, result, function(error) {
+                if (result.affectedRows === 1) {
+                    response.send({ id: result.insertId });
+                } else {
+                    response.status(500).send({ error: 'Error al agregar al carrito' });
+                }
+            });
+        }
+    );
+});
 
              
                 //==========>>>>OBTENER RESUMEN TOTAL COMPRA DESDE DB
@@ -338,7 +369,6 @@ app.put('/datos_cliente',function(request, response){
                     //==========>>>> AGREGAR CANTIDAD PRODUCTO AL CARRITO
 app.get(`/cantidad_producto/:compra_id`, function(request, response){
     const compra_id = request.params.compra_id;
-    const cantidad_producto = request.params.cantidad_producto;
 
 connection.query(`SELECT * FROM compra_productos WHERE compra_id = "${compra_id}"`, function(error, result, fields){
 handleSQLError(response, error, result, function(error){

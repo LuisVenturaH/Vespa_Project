@@ -19,9 +19,13 @@ function login() {
         alert(json.message);
 
         if (json.message === "Login correcto") {
-            localStorage.setItem('cliente_id', json.cliente_id);
-            localStorage.setItem('nombre', json.nombre);
-            console.log('El cliente_id del localStorage es: ', json.cliente_id)
+            const cliente_id = json.cliente_id;
+            console.log(cliente_id)
+            const nombre = json.nombre;
+
+            localStorage.setItem('cliente_id', cliente_id);
+            localStorage.setItem('nombre', nombre);
+            console.log('El cliente_id del localStorage es: ', cliente_id)
             window.location.href = "/index.html"; // Con esto logramos que cuando un usuario se loguee se redireccione a la página de inicio
         }
     })
@@ -68,3 +72,4 @@ function registroNuevoUsuario() {
     })
 }
 }
+

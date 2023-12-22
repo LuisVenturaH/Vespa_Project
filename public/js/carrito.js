@@ -1,7 +1,6 @@
 // const host = "http://localhost:8000";
 
 // Funcion para pintar listado de productos del carrito en carritos.html (PROBADO Y FUNCIONA CORRECTAMENTE)
-
 window.addEventListener("load", function(event) {
     const cliente_id = localStorage.getItem('cliente_id')
     fetch(`${host}/compras/${cliente_id}`)
@@ -46,9 +45,7 @@ window.addEventListener("load", function(event) {
         });
 });
 
-
 // Función para traer el total de la compra (PROBADO Y FUNCIONA CORRECTAMENTE)
-
 window.addEventListener("load", function(event) {
     const cliente_id = localStorage.getItem('cliente_id')
     fetch(`${host}/compratotal/${cliente_id}`)
@@ -69,11 +66,8 @@ window.addEventListener("load", function(event) {
         });
 });
 
-
-
 // Función para agregar productos al carrito
-
-function agregarCarritoProducto1(){
+function agregarCarritoProducto(){
     const producto_id = document.getElementById('producto_id')
     const cantidad_producto = document.getElementById('cantidad_producto')
     const precio = document.getElementById('precio')

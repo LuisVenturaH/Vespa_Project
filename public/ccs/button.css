@@ -48,7 +48,7 @@
     cursor: pointer; 
     color: var(--blanco); 
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1rem;
 }
 
 .jumbotron button { /*Estilos para cambiar display de botones a BLOCK y que ocupen todo el contenedor*/

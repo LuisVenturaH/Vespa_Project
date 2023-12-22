@@ -1,5 +1,3 @@
-// const host = 'http://localhost:8000';
-
 window.addEventListener("load", function(event){
     fetch(`${host}/productos`)
     .then(function(response){
@@ -13,6 +11,9 @@ window.addEventListener("load", function(event){
         }
      
         // PRODUCTO 1
+        const producto_id1 = document.getElementById('producto_id1');
+        producto_id1.innerHTML = `<span ${json[0].id}></span>`;
+
         const imagenProducto1 = document.getElementById("imagen_producto1");
         imagenProducto1.innerHTML = `<img src="/img/${json[0].nombre}.jpg" class="image" alt="Vespa Primavera"/>`
 
@@ -26,6 +27,9 @@ window.addEventListener("load", function(event){
         descripcionProducto1.innerHTML = `<p>${json[0].descripcion_corta}</p>`
 
         // PRODUCTO 2
+        const producto_id2 = document.getElementById('producto_id2');
+        producto_id2.innerHTML = `<span ${json[1].id}></span>`;
+
         const imagenProducto2 = document.getElementById("imagen_producto2");
         imagenProducto2.innerHTML = `<img src="/img/${json[1].nombre}.jpg" class="image" alt="Vespa Primavera"/>`
    
@@ -39,6 +43,9 @@ window.addEventListener("load", function(event){
         descripcionProducto2.innerHTML = `<p>${json[1].descripcion_corta}</p>`
 
         // PRODUCTO 3
+        const producto_id3 = document.getElementById('producto_id3');
+        producto_id3.innerHTML = `<span ${json[2].id}></span>`;
+
         const imagenProducto3 = document.getElementById("imagen_producto3");
         imagenProducto3.innerHTML = `<img src="/img/${json[2].nombre}.jpg" class="image" alt="Vespa Primavera"/>`
    
@@ -52,6 +59,9 @@ window.addEventListener("load", function(event){
         descripcionProducto3.innerHTML = `<p>${json[2].descripcion_corta}</p>`
 
                 // ACCESORIO 1
+                const accesorio_id1 = document.getElementById('accesorio_id1');
+                accesorio_id1.innerHTML = `<span ${json[3].id}></span>`;
+        
                 const imagenAccesorio1 = document.getElementById("imagen_accesorio1");
                 imagenAccesorio1.innerHTML = `<img src="/img/${json[3].nombre}.jpg" class="image" alt="Vespa Primavera"/>`
         
@@ -65,6 +75,9 @@ window.addEventListener("load", function(event){
                 descripcionAccesorio1.innerHTML = `<p>${json[3].descripcion_corta}</p>`
         
                 // ACCESORIO 2
+                const accesorio_id2 = document.getElementById('accesorio_id2');
+                accesorio_id2.innerHTML = `<span ${json[4].id}></span>`;
+
                 const imagenAccesorio2 = document.getElementById("imagen_accesorio2");
                 imagenAccesorio2.innerHTML = `<img src="/img/${json[4].nombre}.jpg" class="image" alt="Vespa Primavera"/>`
            
@@ -78,6 +91,8 @@ window.addEventListener("load", function(event){
                 descripcionAccesorio2.innerHTML = `<p>${json[4].descripcion_corta}</p>`
         
                 // ACCESORIO 3
+                const accesorio_id3 = document.getElementById('accesorio_id3');
+                accesorio_id3.innerHTML = `<span ${json[5].id}></span>`;
                 const imagenAccesorio3 = document.getElementById("imagen_accesorio3");
                 imagenAccesorio3.innerHTML = `<img src="/img/${json[5].nombre}.jpg" class="image" alt="Vespa Primavera"/>`
            
