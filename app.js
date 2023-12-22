@@ -9,7 +9,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'Lv++2023+',
-    database: 'project_vespa'
+    database: 'ecommerce'
 });
 
 connection.connect(function(error){
