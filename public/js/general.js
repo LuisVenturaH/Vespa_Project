@@ -1,4 +1,4 @@
-const host = 'http://localhost:8000';
+const host = 'http://ec2-13-41-189-174.eu-west-2.compute.amazonaws.com/';
 // Función para desconectarse
 function logout() {
     fetch(`${host}/logout`, {
