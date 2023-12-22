@@ -1,4 +1,4 @@
-const host = 'http://ec2-13-41-189-174.eu-west-2.compute.amazonaws.com/';
+const host = 'http://ec2-13-41-189-174.eu-west-2.compute.amazonaws.com:8000';
 // Función para desconectarse
 function logout() {
     fetch(`${host}/logout`, {
@@ -11,7 +11,7 @@ function logout() {
     .then(data=>{
         localStorage.clear();
         console.log(data.message);
-        window.Location.href = 'http://localhost:8000';
+        window.Location.href = 'http://ec2-13-41-189-174.eu-west-2.compute.amazonaws.com:8000';
     
     }).catch(error=>{
         console.error('Error al desconectarse');
@@ -46,7 +46,7 @@ window.addEventListener("load", function(event){
         const articulos_carrito = document.getElementById("articulos_carrito");
         const articulos = json.total || 0;
         articulos_carrito.innerHTML =`
-        <button type="button"  class="btn" ><a href="http://localhost:8000/html/carrito.html" id="carrito">
+        <button type="button"  class="btn" ><a href="http://ec2-13-41-189-174.eu-west-2.compute.amazonaws.com:8000/html/carrito.html" id="carrito">
         <i class="bi bi-cart-fill"></i>Carrito<span>${articulos}</span></a></button> 
         `
     })
